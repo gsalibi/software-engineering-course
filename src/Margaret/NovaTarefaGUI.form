@@ -36,12 +36,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="label2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -138,8 +138,8 @@
     </Component>
     <Component class="java.awt.TextField" name="tarefaText">
       <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Nova Tarefa"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tarefaTextActionPerformed"/>
@@ -147,8 +147,8 @@
     </Component>
     <Component class="java.awt.TextField" name="dataText">
       <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="XX/XX/XXXX"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataTextActionPerformed"/>
