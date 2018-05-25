@@ -53,6 +53,11 @@ public class Login extends javax.swing.JFrame {
                 button1MouseClicked(evt);
             }
         });
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("jButton1");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,7 +115,7 @@ public class Login extends javax.swing.JFrame {
 
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefa = new NovaTarefaGUI();
+        TelaPrincipal tarefa = new TelaPrincipal();
         this.setVisible(false);
         tarefa.setVisible(true);
     }//GEN-LAST:event_button1MouseClicked
@@ -119,6 +124,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
