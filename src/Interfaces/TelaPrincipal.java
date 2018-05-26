@@ -64,10 +64,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblTarefa4 = new java.awt.Label();
         barTarefa4 = new javax.swing.JProgressBar();
         btnTarefa4 = new java.awt.Button();
+        btnNovaTarefa = new java.awt.Button();
         panel1 = new java.awt.Panel();
         lblParceiros = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MargaretCASE");
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -79,6 +81,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
+
+        pnlTarefas.setMaximumSize(new java.awt.Dimension(590, 317));
 
         lblProgressoTarefa1.setFont(new java.awt.Font("Cantarell", 0, 32)); // NOI18N
         lblProgressoTarefa1.setText("Progresso das Tarefas");
@@ -127,6 +131,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnNovaTarefa.setLabel("+");
+        btnNovaTarefa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNovaTarefaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlTarefasLayout = new javax.swing.GroupLayout(pnlTarefas);
         pnlTarefas.setLayout(pnlTarefasLayout);
         pnlTarefasLayout.setHorizontalGroup(
@@ -134,46 +145,53 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(pnlTarefasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblProgressoTarefa1)
-                    .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(pnlTarefasLayout.createSequentialGroup()
-                            .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(barTarefa1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                                .addComponent(lblTarefa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlTarefasLayout.createSequentialGroup()
-                            .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(barTarefa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblTarefa2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnTarefa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlTarefasLayout.createSequentialGroup()
-                        .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(barTarefa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblTarefa3, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTarefa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTarefasLayout.createSequentialGroup()
+                                .addComponent(barTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTarefasLayout.createSequentialGroup()
+                                .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(barTarefa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTarefa2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTarefa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTarefasLayout.createSequentialGroup()
+                                .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(barTarefa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTarefa3, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTarefa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTarefasLayout.createSequentialGroup()
+                                .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(barTarefa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTarefa4, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTarefa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblTarefa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 2, Short.MAX_VALUE))
                     .addGroup(pnlTarefasLayout.createSequentialGroup()
-                        .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(barTarefa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblTarefa4, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTarefa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 36, Short.MAX_VALUE))
+                        .addComponent(lblProgressoTarefa1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNovaTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
         );
         pnlTarefasLayout.setVerticalGroup(
             pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTarefasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProgressoTarefa1)
                     .addGroup(pnlTarefasLayout.createSequentialGroup()
-                        .addComponent(lblProgressoTarefa1)
-                        .addGap(25, 25, 25)
-                        .addComponent(lblTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(barTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(btnNovaTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addComponent(lblTarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTarefa1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(barTarefa1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnTarefa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,7 +284,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa4MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(4);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa4MouseClicked
 
@@ -291,6 +309,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_formWindowActivated
+
+    private void btnNovaTarefaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaTarefaMouseClicked
+        // TODO add your handling code here:
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1);
+        tarefaGUI.setVisible(true);
+    }//GEN-LAST:event_btnNovaTarefaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -332,6 +356,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JProgressBar barTarefa2;
     private javax.swing.JProgressBar barTarefa3;
     private javax.swing.JProgressBar barTarefa4;
+    private java.awt.Button btnNovaTarefa;
     private java.awt.Button btnTarefa1;
     private java.awt.Button btnTarefa2;
     private java.awt.Button btnTarefa3;

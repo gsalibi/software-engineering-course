@@ -2,6 +2,8 @@ package Interfaces;
 
 import Classes_UML.Inicio;
 import Classes_UML.Tarefa;
+import java.time.Instant;
+import java.sql.Date;
 
 /**
  * tentativa de fazer uma janela de criação de tarefas
@@ -12,21 +14,39 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private static boolean editando_tarefa = false;
     private static boolean editando_responsaveis = false;
     private static boolean editando_descricao = false;
+    private static boolean nova_tarefa;
     private Tarefa tarefa;
     /**
      * Creates new form NewJFrame
      */
     public NovaTarefaGUI(int index_tarefa) {
         initComponents();
-        tarefa = Inicio.usuario.getTarefas().get(index_tarefa);
-        descricaoText.setText(tarefa.getDescricao());
-        tarefaText.setText(tarefa.getNome());
-        dataText.setText(tarefa.getPrazo().toString());
-        String responsaveis = new String();
-        for (int i = 0; i < tarefa.getUsuariosAtribuidos().size(); i++){
-            responsaveis += tarefa.getUsuariosAtribuidos().get(i).getNome() + "\n";
+        if (index_tarefa >= 0){
+            nova_tarefa = false;
+            tarefa = Inicio.usuario.getTarefas().get(index_tarefa);
+            descricaoText.setText(tarefa.getDescricao());
+            tarefaText.setText(tarefa.getNome());
+            dataText.setText(tarefa.getPrazo().toString());
+            String responsaveis = new String();
+            for (int i = 0; i < tarefa.getUsuariosAtribuidos().size(); i++){
+                responsaveis += tarefa.getUsuariosAtribuidos().get(i).getNome() + "\n";
+            }
+            responsaveisText.setText(responsaveis);
+            this.setTitle("Editar tarefa: " + tarefa.getNome());
         }
-        responsaveisText.setText(responsaveis);
+        else{
+            nova_tarefa = true;
+            tarefa = new Tarefa("Nova Tarefa", "Insira descricao da tarefa aqui", Date.valueOf("2018-01-01"));
+            descricaoText.setText(tarefa.getDescricao());
+            tarefaText.setText(tarefa.getNome());
+            dataText.setText(tarefa.getPrazo().toString());
+            String responsaveis = new String();
+            for (int i = 0; i < tarefa.getUsuariosAtribuidos().size(); i++){
+                responsaveis += tarefa.getUsuariosAtribuidos().get(i).getNome() + "\n";
+            }
+            responsaveisText.setText(responsaveis);
+            this.setTitle("Criar Nova Tarefa");
+        }
     }
 
     /**
@@ -57,8 +77,9 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
 
         button2.setLabel("button2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criar Nova Tarefa");
+        setResizable(false);
 
         tarefaText.setEnabled(false);
         tarefaText.setText("Nova Tarefa");
@@ -235,6 +256,9 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         tarefa.setDescricao(descricaoText.getText());
         tarefa.setNome(tarefaText.getText());
+        if (nova_tarefa){
+            Inicio.usuario.adicionaNovaTarefa(tarefa);
+        }
         this.dispose();
     }//GEN-LAST:event_finalizarMouseClicked
 
