@@ -2,8 +2,10 @@ package Interfaces;
 
 import Classes_UML.Inicio;
 import Classes_UML.Tarefa;
+import Classes_UML.Usuario;
 import java.time.Instant;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * tentativa de fazer uma janela de criação de tarefas
@@ -16,6 +18,7 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private static boolean editando_descricao = false;
     private static boolean nova_tarefa;
     private Tarefa tarefa;
+    private ArrayList<Usuario> atribuidos;
     /**
      * Creates new form NewJFrame
      */
@@ -24,28 +27,20 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         if (index_tarefa >= 0){
             nova_tarefa = false;
             tarefa = Inicio.usuario.getTarefas().get(index_tarefa);
-            descricaoText.setText(tarefa.getDescricao());
-            tarefaText.setText(tarefa.getNome());
-            dataText.setText(tarefa.getPrazo().toString());
-            String responsaveis = new String();
-            for (int i = 0; i < tarefa.getUsuariosAtribuidos().size(); i++){
-                responsaveis += tarefa.getUsuariosAtribuidos().get(i).getNome() + "\n";
-            }
-            responsaveisText.setText(responsaveis);
             this.setTitle("Editar tarefa: " + tarefa.getNome());
         }
         else{
             nova_tarefa = true;
             tarefa = new Tarefa("Nova Tarefa", "Insira descricao da tarefa aqui", Date.valueOf("2018-01-01"));
-            descricaoText.setText(tarefa.getDescricao());
-            tarefaText.setText(tarefa.getNome());
-            dataText.setText(tarefa.getPrazo().toString());
-            String responsaveis = new String();
-            for (int i = 0; i < tarefa.getUsuariosAtribuidos().size(); i++){
-                responsaveis += tarefa.getUsuariosAtribuidos().get(i).getNome() + "\n";
-            }
-            responsaveisText.setText(responsaveis);
             this.setTitle("Criar Nova Tarefa");
+        }
+        descricaoText.setText(tarefa.getDescricao());
+        tarefaText.setText(tarefa.getNome());
+        dataText.setText(tarefa.getPrazo().toString());
+        
+        atribuidos = tarefa.getUsuariosAtribuidos();
+        for (int i = 0; i < atribuidos.size(); i++){
+            responsaveisText.add(atribuidos.get(i).getNome());
         }
     }
 
@@ -60,10 +55,8 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
 
         button2 = new java.awt.Button();
         tarefaText = new java.awt.TextField();
-        dataText = new java.awt.TextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        responsaveisText = new java.awt.TextArea();
         label2 = new java.awt.Label();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -71,9 +64,12 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         finalizar = new java.awt.Button();
         descartar = new java.awt.Button();
         btnNome = new java.awt.Button();
-        btnResponsaveis = new java.awt.Button();
+        btnAddResponsaveis = new java.awt.Button();
         btnPrazo = new java.awt.Button();
         btnDescricao = new java.awt.Button();
+        dataText = new java.awt.TextField();
+        responsaveisText = new java.awt.List();
+        btnDelResponsaveis = new java.awt.Button();
 
         button2.setLabel("button2");
 
@@ -81,19 +77,11 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         setTitle("Criar Nova Tarefa");
         setResizable(false);
 
-        tarefaText.setEnabled(false);
+        tarefaText.setEditable(false);
         tarefaText.setText("Nova Tarefa");
         tarefaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tarefaTextActionPerformed(evt);
-            }
-        });
-
-        dataText.setEnabled(false);
-        dataText.setText("XX/XX/XXXX");
-        dataText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataTextActionPerformed(evt);
             }
         });
 
@@ -103,15 +91,13 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Data de entrega:");
 
-        responsaveisText.setEnabled(false);
-
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Responsáveis:");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Descrição");
 
-        descricaoText.setEnabled(false);
+        descricaoText.setEditable(false);
 
         finalizar.setLabel("Finalizar");
         finalizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,10 +130,10 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
-        btnResponsaveis.setLabel("Editar");
-        btnResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAddResponsaveis.setLabel("Adicionar");
+        btnAddResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnResponsaveisMouseClicked(evt);
+                btnAddResponsaveisMouseClicked(evt);
             }
         });
 
@@ -162,6 +148,16 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         btnDescricao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDescricaoMouseClicked(evt);
+            }
+        });
+
+        dataText.setEditable(false);
+        dataText.setText("textField1");
+
+        btnDelResponsaveis.setLabel("Remover");
+        btnDelResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDelResponsaveisMouseClicked(evt);
             }
         });
 
@@ -182,25 +178,29 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(responsaveisText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(descricaoText, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDelResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAddResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -213,27 +213,32 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                     .addComponent(btnNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
-                    .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAddResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -256,8 +261,13 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         tarefa.setDescricao(descricaoText.getText());
         tarefa.setNome(tarefaText.getText());
-        if (nova_tarefa){
-            Inicio.usuario.adicionaNovaTarefa(tarefa);
+        for(Usuario u: tarefa.getUsuariosAtribuidos()){
+            u.removeTarefa(tarefa);
+            tarefa.removeUsuarioAtribuido(u);
+        }
+        for(Usuario u: atribuidos){
+            tarefa.addUsuarioAtribuido(u);
+            u.adicionaNovaTarefa(tarefa);
         }
         this.dispose();
     }//GEN-LAST:event_finalizarMouseClicked
@@ -267,41 +277,47 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_descartarMouseClicked
 
-    private void dataTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataTextActionPerformed
-
     private void btnNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNomeMouseClicked
         // TODO add your handling code here:
         editando_tarefa = !editando_tarefa;
-        tarefaText.setEnabled(editando_tarefa);
+        tarefaText.setEditable(editando_tarefa);
     }//GEN-LAST:event_btnNomeMouseClicked
 
-    private void btnResponsaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResponsaveisMouseClicked
+    private void btnAddResponsaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddResponsaveisMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnResponsaveisMouseClicked
+    }//GEN-LAST:event_btnAddResponsaveisMouseClicked
 
     private void btnPrazoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrazoMouseClicked
         // TODO add your handling code here:
         editando_data = !editando_data;
-        dataText.setEnabled(editando_data);
+        dataText.setEditable(editando_data);
     }//GEN-LAST:event_btnPrazoMouseClicked
 
     private void btnDescricaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescricaoMouseClicked
         // TODO add your handling code here:
         editando_descricao = !editando_descricao;
-        descricaoText.setEnabled(editando_descricao);
+        descricaoText.setEditable(editando_descricao);
     }//GEN-LAST:event_btnDescricaoMouseClicked
+
+    private void btnDelResponsaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelResponsaveisMouseClicked
+        // TODO add your handling code here:
+        int[] selecionados = responsaveisText.getSelectedIndexes();
+        for (int i : selecionados){
+            atribuidos.remove(i);
+            responsaveisText.remove(i);
+        }
+    }//GEN-LAST:event_btnDelResponsaveisMouseClicked
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button btnAddResponsaveis;
+    private java.awt.Button btnDelResponsaveis;
     private java.awt.Button btnDescricao;
     private java.awt.Button btnNome;
     private java.awt.Button btnPrazo;
-    private java.awt.Button btnResponsaveis;
     private java.awt.Button button2;
     private java.awt.TextField dataText;
     private java.awt.Button descartar;
@@ -312,7 +328,7 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private java.awt.Label label2;
-    private java.awt.TextArea responsaveisText;
+    private java.awt.List responsaveisText;
     private java.awt.TextField tarefaText;
     // End of variables declaration//GEN-END:variables
 }
