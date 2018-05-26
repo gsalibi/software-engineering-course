@@ -56,8 +56,10 @@ public class Usuario {
 	}
 	
 	public void adicionaNovaTarefa(Tarefa x){
-		if (!tarefas.contains(x))
-			tarefas.add(x);
+		if (!tarefas.contains(x)){
+                    x.addUsuarioAtribuido(this);
+                    tarefas.add(x);
+                }
 	}
 	
 	public void removeDoCanal(Canal x){

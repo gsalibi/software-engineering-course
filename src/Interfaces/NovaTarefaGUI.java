@@ -1,19 +1,32 @@
 package Interfaces;
 
+import Classes_UML.Inicio;
+import Classes_UML.Tarefa;
+
 /**
  * tentativa de fazer uma janela de criação de tarefas
  * @author Giordano Mattiello
  */
 public class NovaTarefaGUI extends javax.swing.JFrame {
-    static boolean editando_data = false;
-    static boolean editando_tarefa = false;
-    static boolean editando_responsaveis = false;
-    static boolean editando_descricao = false;
+    private static boolean editando_data = false;
+    private static boolean editando_tarefa = false;
+    private static boolean editando_responsaveis = false;
+    private static boolean editando_descricao = false;
+    private Tarefa tarefa;
     /**
      * Creates new form NewJFrame
      */
-    public NovaTarefaGUI() {
+    public NovaTarefaGUI(int index_tarefa) {
         initComponents();
+        tarefa = Inicio.usuario.getTarefas().get(index_tarefa);
+        descricaoText.setText(tarefa.getDescricao());
+        tarefaText.setText(tarefa.getNome());
+        dataText.setText(tarefa.getPrazo().toString());
+        String responsaveis = new String();
+        for (int i = 0; i < tarefa.getUsuariosAtribuidos().size(); i++){
+            responsaveis += tarefa.getUsuariosAtribuidos().get(i).getNome() + "\n";
+        }
+        responsaveisText.setText(responsaveis);
     }
 
     /**
@@ -26,49 +39,37 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         button2 = new java.awt.Button();
-        tarefaEdit = new java.awt.Button();
         tarefaText = new java.awt.TextField();
         dataText = new java.awt.TextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        dataEdit = new java.awt.Button();
         responsaveisText = new java.awt.TextArea();
         label2 = new java.awt.Label();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         descricaoText = new java.awt.TextArea();
-        responsaveisEdit = new java.awt.Button();
-        descricaoEdit = new java.awt.Button();
         finalizar = new java.awt.Button();
         descartar = new java.awt.Button();
+        btnNome = new java.awt.Button();
+        btnResponsaveis = new java.awt.Button();
+        btnPrazo = new java.awt.Button();
+        btnDescricao = new java.awt.Button();
 
         button2.setLabel("button2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar Nova Tarefa");
 
-        tarefaEdit.setLabel("edit");
-        tarefaEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tarefaEditMouseClicked(evt);
-            }
-        });
-        tarefaEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tarefaEditActionPerformed(evt);
-            }
-        });
-
-        tarefaText.setText("Nova Tarefa");
         tarefaText.setEnabled(false);
+        tarefaText.setText("Nova Tarefa");
         tarefaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tarefaTextActionPerformed(evt);
             }
         });
 
-        dataText.setText("XX/XX/XXXX");
         dataText.setEnabled(false);
+        dataText.setText("XX/XX/XXXX");
         dataText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dataTextActionPerformed(evt);
@@ -81,18 +82,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Data de entrega:");
 
-        dataEdit.setLabel("edit");
-        dataEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataEditMouseClicked(evt);
-            }
-        });
-        dataEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataEditActionPerformed(evt);
-            }
-        });
-
         responsaveisText.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -102,30 +91,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         jLabel4.setText("Descrição");
 
         descricaoText.setEnabled(false);
-
-        responsaveisEdit.setLabel("edit");
-        responsaveisEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                responsaveisEditMouseClicked(evt);
-            }
-        });
-        responsaveisEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                responsaveisEditActionPerformed(evt);
-            }
-        });
-
-        descricaoEdit.setLabel("edit");
-        descricaoEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                descricaoEditMouseClicked(evt);
-            }
-        });
-        descricaoEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descricaoEditActionPerformed(evt);
-            }
-        });
 
         finalizar.setLabel("Finalizar");
         finalizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,6 +116,34 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
+        btnNome.setLabel("Editar");
+        btnNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNomeMouseClicked(evt);
+            }
+        });
+
+        btnResponsaveis.setLabel("Editar");
+        btnResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnResponsaveisMouseClicked(evt);
+            }
+        });
+
+        btnPrazo.setLabel("Editar");
+        btnPrazo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrazoMouseClicked(evt);
+            }
+        });
+
+        btnDescricao.setLabel("Editar");
+        btnDescricao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDescricaoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,110 +162,66 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(responsaveisEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tarefaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(descricaoEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dataEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tarefaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
-                    .addComponent(dataEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(responsaveisEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                    .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descricaoEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tarefaEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefaEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tarefaEditActionPerformed
-
-    private void dataTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataTextActionPerformed
-
-    private void dataEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataEditActionPerformed
-
-    private void tarefaEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarefaEditMouseClicked
-       editando_tarefa = !editando_tarefa;
-       tarefaText.enable(editando_tarefa);
-    }//GEN-LAST:event_tarefaEditMouseClicked
-
     private void tarefaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefaTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tarefaTextActionPerformed
-
-    private void responsaveisEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_responsaveisEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_responsaveisEditActionPerformed
-
-    private void descricaoEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descricaoEditActionPerformed
-
-    private void dataEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataEditMouseClicked
-        editando_data = !editando_data;
-        dataText.enable(editando_data);
-    }//GEN-LAST:event_dataEditMouseClicked
-
-    private void responsaveisEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_responsaveisEditMouseClicked
-       editando_responsaveis = !editando_responsaveis;
-        responsaveisText.enable(editando_responsaveis);
-    }//GEN-LAST:event_responsaveisEditMouseClicked
-
-    private void descricaoEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descricaoEditMouseClicked
-        editando_descricao = !editando_descricao;
-        descricaoText.enable(editando_descricao);
-    }//GEN-LAST:event_descricaoEditMouseClicked
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
         // TODO add your handling code here:
@@ -284,6 +233,9 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
         // TODO add your handling code here:
+        tarefa.setDescricao(descricaoText.getText());
+        tarefa.setNome(tarefaText.getText());
+        this.dispose();
     }//GEN-LAST:event_finalizarMouseClicked
 
     private void descartarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descartarMouseClicked
@@ -291,16 +243,44 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_descartarMouseClicked
 
+    private void dataTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataTextActionPerformed
+
+    private void btnNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNomeMouseClicked
+        // TODO add your handling code here:
+        editando_tarefa = !editando_tarefa;
+        tarefaText.setEnabled(editando_tarefa);
+    }//GEN-LAST:event_btnNomeMouseClicked
+
+    private void btnResponsaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResponsaveisMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnResponsaveisMouseClicked
+
+    private void btnPrazoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrazoMouseClicked
+        // TODO add your handling code here:
+        editando_data = !editando_data;
+        dataText.setEnabled(editando_data);
+    }//GEN-LAST:event_btnPrazoMouseClicked
+
+    private void btnDescricaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescricaoMouseClicked
+        // TODO add your handling code here:
+        editando_descricao = !editando_descricao;
+        descricaoText.setEnabled(editando_descricao);
+    }//GEN-LAST:event_btnDescricaoMouseClicked
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button btnDescricao;
+    private java.awt.Button btnNome;
+    private java.awt.Button btnPrazo;
+    private java.awt.Button btnResponsaveis;
     private java.awt.Button button2;
-    private java.awt.Button dataEdit;
     private java.awt.TextField dataText;
     private java.awt.Button descartar;
-    private java.awt.Button descricaoEdit;
     private java.awt.TextArea descricaoText;
     private java.awt.Button finalizar;
     private javax.swing.JLabel jLabel1;
@@ -308,9 +288,7 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private java.awt.Label label2;
-    private java.awt.Button responsaveisEdit;
     private java.awt.TextArea responsaveisText;
-    private java.awt.Button tarefaEdit;
     private java.awt.TextField tarefaText;
     // End of variables declaration//GEN-END:variables
 }

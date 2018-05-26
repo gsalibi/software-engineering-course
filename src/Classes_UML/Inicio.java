@@ -13,13 +13,14 @@ import java.sql.Date;
  */
 public class Inicio {
        public static Sistema sistema;
+       public static Usuario usuario;
     
        public static void iniciaSimulacao(){
             sistema = new Sistema();
             sistema.criaUsuario("UsuarioTeste");
             sistema.criaProjeto("ProjetoTeste");
        
-            Usuario usuario = sistema.getUsuarios().get(0);
+            usuario = sistema.getUsuarios().get(0);
             Tarefa tarefa = new Tarefa("Tarefa 01 - Teste", "Descrição da tarefa 01", Date.valueOf("2018-09-26"));
             usuario.adicionaNovaTarefa(tarefa);
             Tarefa tarefa2 = new Tarefa("Tarefa 02 - Outro Teste", "Descrição da tarefa 02", Date.valueOf("2018-09-27"));
