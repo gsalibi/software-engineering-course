@@ -13,11 +13,16 @@ import java.sql.Date;
  */
 public class Inicio {
        public static Sistema sistema;
-       public static Usuario usuario;
+       public static Usuario usuario; //usuario logado no sistema
+       public static Projeto projeto; //projeto atual
     
        public static void iniciaSimulacao(){
             sistema = new Sistema();
+            
+            //Dados inseridos à força so para simulaçao
             sistema.criaUsuario("UsuarioTeste");
+            sistema.criaUsuario("Colega da Silva");
+            
             sistema.criaProjeto("ProjetoTeste");
        
             usuario = sistema.getUsuarios().get(0);
