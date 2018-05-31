@@ -138,7 +138,7 @@ public class NovoUsuario extends javax.swing.JFrame {
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
         novoUsuario = new Usuario(textField1.getText(),textField2.getText(),textField3.getText());
-        //Passar o novoUsuario para a classe sistema (nao sei como fazer isso)
+        //Passar o novoUsuario para a classe sistema (nao sei como fazer isso).
         this.setVisible(false);
     }//GEN-LAST:event_button1MouseClicked
     private Usuario getNovoUsuario(){
