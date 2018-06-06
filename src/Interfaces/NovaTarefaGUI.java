@@ -65,10 +65,7 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         descricaoText = new java.awt.TextArea();
         finalizar = new java.awt.Button();
         descartar = new java.awt.Button();
-        btnNome = new java.awt.Button();
         btnAddResponsaveis = new java.awt.Button();
-        btnPrazo = new java.awt.Button();
-        btnDescricao = new java.awt.Button();
         dataText = new java.awt.TextField();
         responsaveisText = new java.awt.List();
         btnDelResponsaveis = new java.awt.Button();
@@ -86,7 +83,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
-        tarefaText.setEditable(false);
         tarefaText.setText("Nova Tarefa");
         tarefaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,8 +101,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("Descrição:");
-
-        descricaoText.setEditable(false);
 
         finalizar.setLabel("Concluir");
         finalizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,13 +126,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
-        btnNome.setLabel("Editar");
-        btnNome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNomeMouseClicked(evt);
-            }
-        });
-
         btnAddResponsaveis.setLabel("Adicionar à tarefa");
         btnAddResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -146,21 +133,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
-        btnPrazo.setLabel("Editar");
-        btnPrazo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrazoMouseClicked(evt);
-            }
-        });
-
-        btnDescricao.setLabel("Editar");
-        btnDescricao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDescricaoMouseClicked(evt);
-            }
-        });
-
-        dataText.setEditable(false);
         dataText.setText("textField1");
 
         btnDelResponsaveis.setLabel("Remover da tarefa");
@@ -191,28 +163,20 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(finalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descricaoText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(tarefaText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))
+                        .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(dataText, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41))
+                                        .addGap(104, 104, 104))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(10, 10, 10)))
@@ -232,14 +196,12 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnPrazo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,11 +217,8 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(descricaoText, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,12 +263,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_descartarMouseClicked
 
-    private void btnNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNomeMouseClicked
-        // TODO add your handling code here:
-        editando_tarefa = !editando_tarefa;
-        tarefaText.setEditable(editando_tarefa);
-    }//GEN-LAST:event_btnNomeMouseClicked
-
     private void btnAddResponsaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddResponsaveisMouseClicked
         // TODO add your handling code here:
         int[] selecionados = usuariosText.getSelectedIndexes();
@@ -318,18 +271,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             responsaveisText.add(Inicio.sistema.getUsuarios().get(i).getNome());
         }
     }//GEN-LAST:event_btnAddResponsaveisMouseClicked
-
-    private void btnPrazoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrazoMouseClicked
-        // TODO add your handling code here:
-        editando_data = !editando_data;
-        dataText.setEditable(editando_data);
-    }//GEN-LAST:event_btnPrazoMouseClicked
-
-    private void btnDescricaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescricaoMouseClicked
-        // TODO add your handling code here:
-        editando_descricao = !editando_descricao;
-        descricaoText.setEditable(editando_descricao);
-    }//GEN-LAST:event_btnDescricaoMouseClicked
 
     private void btnDelResponsaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelResponsaveisMouseClicked
         // TODO add your handling code here:
@@ -351,9 +292,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnAddResponsaveis;
     private java.awt.Button btnDelResponsaveis;
-    private java.awt.Button btnDescricao;
-    private java.awt.Button btnNome;
-    private java.awt.Button btnPrazo;
     private java.awt.Button button2;
     private java.awt.TextField dataText;
     private java.awt.Button descartar;

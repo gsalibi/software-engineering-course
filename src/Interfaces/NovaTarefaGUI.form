@@ -51,23 +51,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="finalizar" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="finalizar" min="-2" max="-2" attributes="0"/>
                           <Component id="descricaoText" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="descartar" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDescricao" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="descartar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="tarefaText" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnNome" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -75,9 +67,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="dataText" pref="93" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnPrazo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="responsaveisText" min="-2" pref="175" max="-2" attributes="0"/>
@@ -109,15 +99,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="tarefaText" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnNome" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="dataText" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnPrazo" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -138,12 +126,8 @@
                   </Group>
               </Group>
               <EmptySpace pref="42" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnDescricao" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="descartar" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="descartar" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="descricaoText" min="-2" pref="64" max="-2" attributes="0"/>
@@ -161,7 +145,6 @@
   <SubComponents>
     <Component class="java.awt.TextField" name="tarefaText">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Nova Tarefa"/>
       </Properties>
       <Events>
@@ -203,9 +186,6 @@
       </Properties>
     </Component>
     <Component class="java.awt.TextArea" name="descricaoText">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="java.awt.Button" name="finalizar">
       <Properties>
@@ -225,14 +205,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descartarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="java.awt.Button" name="btnNome">
-      <Properties>
-        <Property name="label" type="java.lang.String" value="Editar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnNomeMouseClicked"/>
-      </Events>
-    </Component>
     <Component class="java.awt.Button" name="btnAddResponsaveis">
       <Properties>
         <Property name="label" type="java.lang.String" value="Adicionar &#xe0; tarefa"/>
@@ -241,25 +213,8 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAddResponsaveisMouseClicked"/>
       </Events>
     </Component>
-    <Component class="java.awt.Button" name="btnPrazo">
-      <Properties>
-        <Property name="label" type="java.lang.String" value="Editar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPrazoMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="java.awt.Button" name="btnDescricao">
-      <Properties>
-        <Property name="label" type="java.lang.String" value="Editar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDescricaoMouseClicked"/>
-      </Events>
-    </Component>
     <Component class="java.awt.TextField" name="dataText">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="textField1"/>
       </Properties>
     </Component>
