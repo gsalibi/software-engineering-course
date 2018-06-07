@@ -100,10 +100,12 @@ public class Usuario {
 	}
 	
 	public ArrayList<Projeto> getProjetos() {
-		return new ArrayList<Projeto>(projetos);
+            return this.projetos;
 	}
 	
-	boolean comparaSenha(String senha){
-            return (this.senha == senha);            
+	public boolean comparaSenha(String senha){
+            boolean retorno;
+            retorno = this.senha.equals(senha);
+            return retorno;            
         }
 }

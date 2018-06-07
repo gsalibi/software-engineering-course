@@ -8,13 +8,15 @@ public final class Sistema {
 	private ArrayList<Projeto> projetos;
 	
 	public Sistema(){
-		usuarios = new ArrayList<Usuario>();
-		projetos = new ArrayList<Projeto>();
+		usuarios = new ArrayList<>();
+		projetos = new ArrayList<>();
 	}
 	
 	// métodos que criam usuários/gerentes no sistema
-	public void criaUsuario(String nome){
-		usuarios.add(new Usuario(nome));
+	public int criaUsuario(String nome){
+                Usuario user = new Usuario(nome);
+		usuarios.add(user);
+                return user.getId();
 	}
 	
 	public void criaGerente(String nome){
@@ -28,11 +30,11 @@ public final class Sistema {
 	
 	// getters
 	public ArrayList<Usuario> getUsuarios(){
-		return new ArrayList<Usuario>(usuarios);
+		return usuarios;
 	}
 	
 	public ArrayList<Projeto> getProjetos(){
-		return new ArrayList<Projeto>(projetos);
+		return projetos;
 	}
 	
 }

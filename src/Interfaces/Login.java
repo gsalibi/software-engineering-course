@@ -5,17 +5,23 @@
  */
 package Interfaces;
 
+import Classes_UML.Sistema;
+import Classes_UML.Usuario;
+import java.util.ArrayList;
+
 /**
  *
  * @author Giordano Mattiello
  */
 public class Login extends javax.swing.JFrame {
     NovoUsuario cadastro;
+    private Sistema sistema;
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(Sistema sistema) {
         initComponents();
+        this.sistema = sistema;
     }
 
     /**
@@ -27,22 +33,27 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textField3 = new java.awt.TextField();
-        textField1 = new java.awt.TextField();
+        txtUser = new java.awt.TextField();
+        txtPassw = new java.awt.TextField();
         label1 = new java.awt.Label();
         button1 = new java.awt.Button();
         button2 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        textField3.setText("Username");
-        textField3.addActionListener(new java.awt.event.ActionListener() {
+        txtUser.setText("Username");
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField3ActionPerformed(evt);
+                txtUserActionPerformed(evt);
             }
         });
 
-        textField1.setText("Senha");
+        txtPassw.setText("Senha");
+        txtPassw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswActionPerformed(evt);
+            }
+        });
 
         label1.setFont(new java.awt.Font("Comic Sans MS", 1, 30)); // NOI18N
         label1.setText("Margaret CASE");
@@ -89,8 +100,8 @@ public class Login extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(13, 13, 13))
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                            .addComponent(txtPassw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                         .addGap(285, 285, 285))))
         );
         layout.setVerticalGroup(
@@ -99,9 +110,9 @@ public class Login extends javax.swing.JFrame {
                 .addGap(105, 105, 105)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,15 +123,32 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField3ActionPerformed
+    }//GEN-LAST:event_txtUserActionPerformed
 
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
-        TelaPrincipal tarefa = new TelaPrincipal();
-        this.setVisible(false);
-        tarefa.setVisible(true);
+        String username = txtUser.getText();
+        String passw = txtPassw.getText();
+        
+        ArrayList<Usuario> users  = sistema.getUsuarios();
+        int id = -1;
+        for (Usuario target: users)  {
+            if (target.getNome().equals(username)) {
+                id = target.getId();
+                break;
+            }
+        }
+        if (id != -1) {
+            Usuario User = users.get(id);
+
+            if (User.comparaSenha(passw)) {
+                TelaPrincipal tarefa = new TelaPrincipal();
+                this.setVisible(false);
+                tarefa.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_button1MouseClicked
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
@@ -133,9 +161,13 @@ public class Login extends javax.swing.JFrame {
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
         // TODO add your handling code here:
-        cadastro = new NovoUsuario();
+        cadastro = new NovoUsuario(sistema);
         cadastro.setVisible(true);      
     }//GEN-LAST:event_button2MouseClicked
+
+    private void txtPasswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswActionPerformed
     private NovoUsuario getCadastro(){
         return this.cadastro;
     }
@@ -149,8 +181,8 @@ public class Login extends javax.swing.JFrame {
     private java.awt.Button button1;
     private java.awt.Button button2;
     private java.awt.Label label1;
-    private java.awt.TextField textField1;
-    private java.awt.TextField textField3;
+    private java.awt.TextField txtPassw;
+    private java.awt.TextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
 /*

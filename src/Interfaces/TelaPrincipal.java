@@ -39,6 +39,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         bars.add(barTarefa2);
         bars.add(barTarefa3);
         bars.add(barTarefa4);
+        
+        
     }
 
     /**
@@ -226,7 +228,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

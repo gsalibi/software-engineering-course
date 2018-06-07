@@ -16,19 +16,21 @@ public class Inicio {
        public static Usuario usuario; //usuario logado no sistema
        public static Projeto projeto; //projeto atual
     
-       public static void iniciaSimulacao(){
-            sistema = new Sistema();
-            
+       public static void iniciaSimulacao(Sistema sistema){
+                        
             //Dados inseridos à força so para simulaçao
-            sistema.criaUsuario("UsuarioTeste");
-            sistema.criaUsuario("Colega da Silva");
+            int id =sistema.criaUsuario("UsuarioTeste");
+            usuario = sistema.getUsuarios().get(id);
             
             sistema.criaProjeto("ProjetoTeste");
-       
-            usuario = sistema.getUsuarios().get(0);
             Tarefa tarefa = new Tarefa("Tarefa 01 - Teste", "Descrição da tarefa 01", Date.valueOf("2018-09-26"));
             usuario.adicionaNovaTarefa(tarefa);
             Tarefa tarefa2 = new Tarefa("Tarefa 02 - Outro Teste", "Descrição da tarefa 02", Date.valueOf("2018-09-27"));
             usuario.adicionaNovaTarefa(tarefa2);
+            
+            id = sistema.criaUsuario("Colega da Silva");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.adicionaNovaTarefa(tarefa2);
+            
        }
 }
