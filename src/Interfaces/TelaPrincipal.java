@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Classes_UML.Inicio;
+import Classes_UML.Sistema;
 import Classes_UML.Usuario;
 import java.util.ArrayList;
 
@@ -19,10 +20,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ArrayList<java.awt.Label> labels;
     private ArrayList<java.awt.Button> buttons;
     private ArrayList<javax.swing.JProgressBar> bars;
+    private Sistema sistema;
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(Sistema sistema) {
         initComponents();
         labels = new ArrayList<>();
         labels.add(lblTarefa1);
@@ -39,6 +41,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         bars.add(barTarefa2);
         bars.add(barTarefa3);
         bars.add(barTarefa4);
+        this.sistema = sistema;
         
         
     }
@@ -69,6 +72,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnNovaTarefa = new java.awt.Button();
         panel1 = new java.awt.Panel();
         lblParceiros = new java.awt.Label();
+        btnLogOut = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MargaretCASE");
@@ -228,7 +232,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,6 +242,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(144, Short.MAX_VALUE))
         );
 
+        btnLogOut.setActionCommand("btnLogout");
+        btnLogOut.setLabel("LogOut");
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseClicked(evt);
+            }
+        });
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,15 +263,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(276, Short.MAX_VALUE))
         );
@@ -264,7 +288,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa1MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(0);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(0,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa1MouseClicked
 
@@ -274,19 +298,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa2MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(1);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(1,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa2MouseClicked
 
     private void btnTarefa3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa3MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(2);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(2,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa3MouseClicked
 
     private void btnTarefa4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa4MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa4MouseClicked
 
@@ -314,50 +338,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnNovaTarefaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaTarefaMouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnNovaTarefaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
+        Login tela = new Login(sistema);
+        this.setVisible(false);
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogOutMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barTarefa1;
     private javax.swing.JProgressBar barTarefa2;
     private javax.swing.JProgressBar barTarefa3;
     private javax.swing.JProgressBar barTarefa4;
+    private java.awt.Button btnLogOut;
     private java.awt.Button btnNovaTarefa;
     private java.awt.Button btnTarefa1;
     private java.awt.Button btnTarefa2;
