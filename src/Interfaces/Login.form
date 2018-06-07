@@ -39,8 +39,8 @@
                               <Component id="button2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="textField1" max="32767" attributes="0"/>
-                          <Component id="textField3" pref="173" max="32767" attributes="0"/>
+                          <Component id="txtPassw" max="32767" attributes="0"/>
+                          <Component id="txtUser" pref="173" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
                   </Group>
@@ -54,9 +54,9 @@
               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
               <Component id="label1" min="-2" pref="109" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="textField3" min="-2" max="-2" attributes="0"/>
+              <Component id="txtUser" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="textField1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtPassw" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="button1" min="-2" max="-2" attributes="0"/>
@@ -68,18 +68,21 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="java.awt.TextField" name="textField3">
+    <Component class="java.awt.TextField" name="txtUser">
       <Properties>
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUserActionPerformed"/>
       </Events>
     </Component>
-    <Component class="java.awt.TextField" name="textField1">
+    <Component class="java.awt.TextField" name="txtPassw">
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="label1">
       <Properties>
