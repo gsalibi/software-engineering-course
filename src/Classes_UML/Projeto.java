@@ -91,7 +91,7 @@ public class Projeto {
 	}
 	
 	public void criaCanal(Usuario proprietario, String nome){
-		canais.add(new Canal(nome, proprietario));
+		canais.add(new Canal(nome, proprietario,""));
 	}
 	
 	public void deletaCanal(Canal x){

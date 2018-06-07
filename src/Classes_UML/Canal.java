@@ -8,11 +8,12 @@ public class Canal {
 	private final int id;
 	private int idProprietario;
 	private String nome;
+        private String Descricao;
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Integer> idModeradores;
 	private ArrayList<Mensagem> mensagens;
 	
-	public Canal(String nome, Usuario proprietario){
+	public Canal(String nome, Usuario proprietario, String desc){
 		this.id = proximoId++;
 		this.nome = nome;
 		this.idProprietario = proprietario.getId();
@@ -21,7 +22,12 @@ public class Canal {
 		mensagens = new ArrayList<Mensagem>();
 		usuarios = new ArrayList<Usuario>();
 		usuarios.add(proprietario);
+                this.Descricao = desc;
 	}
+
+    Canal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	public int getId(){
 		return id;

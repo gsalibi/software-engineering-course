@@ -21,6 +21,7 @@ public class Inicio {
             //Dados inseridos à força so para simulaçao
             int id =sistema.criaUsuario("UsuarioTeste");
             usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
             
             sistema.criaProjeto("ProjetoTeste");
             Tarefa tarefa = new Tarefa("Tarefa 01 - Teste", "Descrição da tarefa 01", Date.valueOf("2018-09-26"));
@@ -31,6 +32,10 @@ public class Inicio {
             id = sistema.criaUsuario("Colega da Silva");
             usuario = sistema.getUsuarios().get(id);
             usuario.adicionaNovaTarefa(tarefa2);
+            
+            id = sistema.criaUsuario("Username");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("Senha");
             
        }
 }

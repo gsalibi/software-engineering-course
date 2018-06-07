@@ -144,9 +144,9 @@ public class Login extends javax.swing.JFrame {
             Usuario User = users.get(id);
 
             if (User.comparaSenha(passw)) {
-                TelaPrincipal tarefa = new TelaPrincipal();
-                this.setVisible(false);
+                TelaPrincipal tarefa = new TelaPrincipal(sistema, User);
                 tarefa.setVisible(true);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_button1MouseClicked

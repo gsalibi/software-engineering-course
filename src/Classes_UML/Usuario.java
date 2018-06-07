@@ -57,12 +57,12 @@ public class Usuario {
 	}
 
 	public ArrayList<Tarefa> getTarefas() {
-		return new ArrayList<Tarefa>(tarefas);
+            return this.tarefas;
 	}
 
 	// o retorno eh uma copia
 	public ArrayList<Canal> getCanais() {
-		return new ArrayList<Canal>(canais);
+            return this.canais;
 	}
 
 	public int getId() {

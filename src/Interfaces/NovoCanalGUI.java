@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Classes_UML.Canal;
 import Classes_UML.Inicio;
 import Classes_UML.Sistema;
 import Classes_UML.Tarefa;
@@ -11,43 +12,31 @@ import java.util.ArrayList;
  * tentativa de fazer uma janela de criação de tarefas
  * @author Giordano Mattiello
  */
-public class NovaTarefaGUI extends javax.swing.JFrame {
-    private static boolean editando_data = false;
-    private static boolean editando_tarefa = false;
-    private static boolean editando_responsaveis = false;
+public class NovoCanalGUI extends javax.swing.JFrame {
+    
+    private static boolean editando_canal = false;
+    private static boolean editando_participantes = false;
     private static boolean editando_descricao = false;
-    private static boolean nova_tarefa;
-    private Tarefa tarefa;
+    private static boolean novo_canal;
+    private Canal canal;
     private ArrayList<Usuario> atribuidos;
     private Sistema sistema;
+    private Usuario dono;
     /**
      * Creates new form NewJFrame
      */
-    public NovaTarefaGUI(int index_tarefa, Sistema sistema) {
+    public NovoCanalGUI(Usuario user, Sistema sistema) {
         initComponents();
-        if (index_tarefa >= 0){
-            nova_tarefa = false;
-            tarefa = Inicio.usuario.getTarefas().get(index_tarefa);
-            this.setTitle("Editar tarefa: " + tarefa.getNome());
-        }
-        else{
-            nova_tarefa = true;
-            tarefa = new Tarefa("Nova Tarefa", "Insira descricao da tarefa aqui", Date.valueOf("2018-01-01"));
-            this.setTitle("Criar Nova Tarefa");
-        }
-        descricaoText.setText(tarefa.getDescricao());
-        tarefaText.setText(tarefa.getNome());
-        dataText.setText(tarefa.getPrazo().toString());
+        novo_canal = true;
         
-        atribuidos = tarefa.getUsuariosAtribuidos();
-        for (int i = 0; i < atribuidos.size(); i++){
-            responsaveisText.add(atribuidos.get(i).getNome());
-        }
+        this.setTitle("Criar Novo Canal");     
+        
         for (int i = 0; i < sistema.getUsuarios().size(); i++){
             usuariosText.add(sistema.getUsuarios().get(i).getNome());
         }
         
         this.sistema = sistema;
+        this.dono = user;
     }
 
     /**
@@ -60,9 +49,8 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         button2 = new java.awt.Button();
-        tarefaText = new java.awt.TextField();
+        txtCanalNome = new java.awt.TextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         label2 = new java.awt.Label();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -70,7 +58,6 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         finalizar = new java.awt.Button();
         descartar = new java.awt.Button();
         btnAddResponsaveis = new java.awt.Button();
-        dataText = new java.awt.TextField();
         responsaveisText = new java.awt.List();
         btnDelResponsaveis = new java.awt.Button();
         usuariosText = new java.awt.List();
@@ -87,21 +74,18 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
-        tarefaText.setText("Nova Tarefa");
-        tarefaText.addActionListener(new java.awt.event.ActionListener() {
+        txtCanalNome.setText("Novo Canal");
+        txtCanalNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tarefaTextActionPerformed(evt);
+                txtCanalNomeActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel1.setText("Nova Tarefa:");
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel2.setText("Data de entrega:");
+        jLabel1.setText("Nova Canal:");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel3.setText("Responsáveis:");
+        jLabel3.setText("Participantes");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("Descrição:");
@@ -130,16 +114,14 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             }
         });
 
-        btnAddResponsaveis.setLabel("Adicionar à tarefa");
+        btnAddResponsaveis.setLabel("Adicionar ao canal");
         btnAddResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddResponsaveisMouseClicked(evt);
             }
         });
 
-        dataText.setText("textField1");
-
-        btnDelResponsaveis.setLabel("Remover da tarefa");
+        btnDelResponsaveis.setLabel("Remover do canal");
         btnDelResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDelResponsaveisMouseClicked(evt);
@@ -161,9 +143,8 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,18 +153,13 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tarefaText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCanalNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(dataText, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                        .addGap(104, 104, 104))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)))
+                                .addComponent(responsaveisText, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnDelResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,12 +176,8 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(tarefaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dataText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(22, 22, 22)
+                    .addComponent(txtCanalNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,9 +207,9 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tarefaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefaTextActionPerformed
+    private void txtCanalNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCanalNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tarefaTextActionPerformed
+    }//GEN-LAST:event_txtCanalNomeActionPerformed
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
         // TODO add your handling code here:
@@ -249,16 +221,12 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
         // TODO add your handling code here:
-        tarefa.setDescricao(descricaoText.getText());
-        tarefa.setNome(tarefaText.getText());
-        for(Usuario u: tarefa.getUsuariosAtribuidos()){
-            u.removeTarefa(tarefa);
-            tarefa.removeUsuarioAtribuido(u);
-        }
+        Canal canal = new Canal(txtCanalNome.getText(), dono, descricaoText.getText());
+      
         for(Usuario u: atribuidos){
-            tarefa.addUsuarioAtribuido(u);
-            u.adicionaNovaTarefa(tarefa);
+            u.adicionaNoCanal(canal);
         }
+        
         this.dispose();
     }//GEN-LAST:event_finalizarMouseClicked
 
@@ -297,18 +265,16 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private java.awt.Button btnAddResponsaveis;
     private java.awt.Button btnDelResponsaveis;
     private java.awt.Button button2;
-    private java.awt.TextField dataText;
     private java.awt.Button descartar;
     private java.awt.TextArea descricaoText;
     private java.awt.Button finalizar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private java.awt.Label label2;
     private java.awt.List responsaveisText;
-    private java.awt.TextField tarefaText;
+    private java.awt.TextField txtCanalNome;
     private java.awt.List usuariosText;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,10 +21,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ArrayList<java.awt.Button> buttons;
     private ArrayList<javax.swing.JProgressBar> bars;
     private Sistema sistema;
+    private Usuario user;
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal(Sistema sistema) {
+    public TelaPrincipal(Sistema sistema, Usuario user) {
         initComponents();
         labels = new ArrayList<>();
         labels.add(lblTarefa1);
@@ -42,6 +43,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         bars.add(barTarefa3);
         bars.add(barTarefa4);
         this.sistema = sistema;
+        
+        this.user = user;
         
         
     }
@@ -72,6 +75,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnNovaTarefa = new java.awt.Button();
         panel1 = new java.awt.Panel();
         lblParceiros = new java.awt.Label();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        chatUsers = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        chatBoard = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        chatMSG = new javax.swing.JTextArea();
+        btnEnviar = new java.awt.Button();
+        btnAddUserCanal = new java.awt.Button();
         btnLogOut = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -219,11 +230,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(lblTarefa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(barTarefa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblParceiros.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblParceiros.setText("Parceiros da Equipe");
+
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        chatUsers.setEditable(false);
+        chatUsers.setColumns(20);
+        chatUsers.setRows(5);
+        jScrollPane1.setViewportView(chatUsers);
+
+        jScrollPane2.setHorizontalScrollBar(null);
+
+        chatBoard.setEditable(false);
+        chatBoard.setColumns(20);
+        chatBoard.setLineWrap(true);
+        chatBoard.setRows(5);
+        jScrollPane2.setViewportView(chatBoard);
+
+        chatMSG.setColumns(20);
+        chatMSG.setLineWrap(true);
+        chatMSG.setRows(5);
+        jScrollPane3.setViewportView(chatMSG);
+
+        btnEnviar.setLabel("Enviar");
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseClicked(evt);
+            }
+        });
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+
+        btnAddUserCanal.setLabel("+");
+        btnAddUserCanal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddUserCanalMouseClicked(evt);
+            }
+        });
+        btnAddUserCanal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUserCanalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -231,15 +286,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                            .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddUserCanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddUserCanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnLogOut.setActionCommand("btnLogout");
@@ -261,13 +338,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -275,12 +350,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(276, Short.MAX_VALUE))
+                    .addComponent(pnlTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,6 +408,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 buttons.get(i).setVisible(true);
             }
         }
+        ArrayList<Usuario> users = sistema.getUsuarios();
+        for(Usuario amigos: users) {
+            chatUsers.setText(chatUsers.getText() + amigos.getNome() +"\n");
+        }
     }//GEN-LAST:event_formWindowActivated
 
     private void btnNovaTarefaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaTarefaMouseClicked
@@ -353,18 +431,47 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
+        String texto = chatMSG.getText();
+        if (!texto.isEmpty()) {
+            chatBoard.setText(chatBoard.getText()+user.getNome()+":\n  "+chatMSG.getText()+"\n");
+            chatMSG.setText("");
+        }
+    }//GEN-LAST:event_btnEnviarMouseClicked
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void btnAddUserCanalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserCanalMouseClicked
+        NovoCanalGUI guiC = new NovoCanalGUI(user, sistema);
+        guiC.setVisible(true);
+    }//GEN-LAST:event_btnAddUserCanalMouseClicked
+
+    private void btnAddUserCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserCanalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddUserCanalActionPerformed
+
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barTarefa1;
     private javax.swing.JProgressBar barTarefa2;
     private javax.swing.JProgressBar barTarefa3;
     private javax.swing.JProgressBar barTarefa4;
+    private java.awt.Button btnAddUserCanal;
+    private java.awt.Button btnEnviar;
     private java.awt.Button btnLogOut;
     private java.awt.Button btnNovaTarefa;
     private java.awt.Button btnTarefa1;
     private java.awt.Button btnTarefa2;
     private java.awt.Button btnTarefa3;
     private java.awt.Button btnTarefa4;
+    private javax.swing.JTextArea chatBoard;
+    private javax.swing.JTextArea chatMSG;
+    private javax.swing.JTextArea chatUsers;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private java.awt.Label lblParceiros;
     private javax.swing.JLabel lblProgressoTarefa1;
     private java.awt.Label lblTarefa1;

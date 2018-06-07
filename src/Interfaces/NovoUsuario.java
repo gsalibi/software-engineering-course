@@ -142,7 +142,7 @@ public class NovoUsuario extends javax.swing.JFrame {
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_button2MouseClicked
 
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
@@ -155,6 +155,8 @@ public class NovoUsuario extends javax.swing.JFrame {
         user.setSenha(txtPassw.getText());
         user.setEmail(txtEmail.getText());
         usuarios.set(id, user);
+        this.dispose();
+        
     }//GEN-LAST:event_button1MouseClicked
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
