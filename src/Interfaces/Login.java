@@ -7,6 +7,7 @@ package Interfaces;
 
 import Classes_UML.Sistema;
 import Classes_UML.Usuario;
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -41,7 +42,16 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtUser.setText("Username");
+        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUserFocusLost(evt);
+            }
+        });
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
@@ -49,9 +59,22 @@ public class Login extends javax.swing.JFrame {
         });
 
         txtPassw.setText("Senha");
+        txtPassw.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswFocusLost(evt);
+            }
+        });
         txtPassw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswActionPerformed(evt);
+            }
+        });
+        txtPassw.addTextListener(new java.awt.event.TextListener() {
+            public void textValueChanged(java.awt.event.TextEvent evt) {
+                txtPasswTextValueChanged(evt);
             }
         });
 
@@ -168,6 +191,39 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswActionPerformed
+
+    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
+        // TODO add your handling code here:
+        if (txtUser.getText().equals("Username"))  {
+            txtUser.setText("");
+        }
+    }//GEN-LAST:event_txtUserFocusGained
+
+    private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
+        // TODO add your handling code here:
+        if (txtUser.getText().equals(""))  {
+            txtUser.setText("Username");
+        }
+    }//GEN-LAST:event_txtUserFocusLost
+
+    private void txtPasswFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswFocusGained
+        // TODO add your handling code here:
+        if (txtPassw.getText().equals("Senha"))  {
+            txtPassw.setText("");
+        }
+    }//GEN-LAST:event_txtPasswFocusGained
+
+    private void txtPasswFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswFocusLost
+        // TODO add your handling code here:
+        if (txtPassw.getText().equals(""))  {
+            txtPassw.setText("Senha");
+        }     
+    }//GEN-LAST:event_txtPasswFocusLost
+
+    private void txtPasswTextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_txtPasswTextValueChanged
+        // TODO add your handling code here:
+        txtPassw.setEchoChar('*');
+    }//GEN-LAST:event_txtPasswTextValueChanged
     private NovoUsuario getCadastro(){
         return this.cadastro;
     }

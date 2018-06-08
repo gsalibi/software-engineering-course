@@ -68,6 +68,14 @@ public class NovoUsuario extends javax.swing.JFrame {
         label1.setText("Nome :");
 
         txtNome.setText("Gilmar");
+        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomeFocusLost(evt);
+            }
+        });
 
         label2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label2.setText("Email :");
@@ -77,6 +85,14 @@ public class NovoUsuario extends javax.swing.JFrame {
         label4.setText("Senha :");
 
         txtEmail.setText("Gilmar@gilmar.com.br");
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -162,6 +178,34 @@ public class NovoUsuario extends javax.swing.JFrame {
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void txtNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusGained
+        // TODO add your handling code here:
+        if (txtNome.getText().equals("Gilmar"))  {
+            txtNome.setText("");
+        }        
+    }//GEN-LAST:event_txtNomeFocusGained
+
+    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
+        // TODO add your handling code here:
+        if (txtNome.getText().equals(""))  {
+            txtNome.setText("Gilmar");
+        }        
+    }//GEN-LAST:event_txtNomeFocusLost
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        // TODO add your handling code here:
+        if (txtEmail.getText().equals("Gilmar@gilmar.com.br"))  {
+            txtEmail.setText("");
+        }        
+    }//GEN-LAST:event_txtEmailFocusGained
+
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        // TODO add your handling code here:
+        if (txtEmail.getText().equals(""))  {
+            txtEmail.setText("Gilmar@gilmar.com.br");
+        }        
+    }//GEN-LAST:event_txtEmailFocusLost
     private Usuario getNovoUsuario(){
         return this.novoUsuario;
     }

@@ -88,6 +88,14 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         });
 
         tarefaText.setText("Nova Tarefa");
+        tarefaText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tarefaTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tarefaTextFocusLost(evt);
+            }
+        });
         tarefaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tarefaTextActionPerformed(evt);
@@ -105,6 +113,15 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("Descrição:");
+
+        descricaoText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                descricaoTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                descricaoTextFocusLost(evt);
+            }
+        });
 
         finalizar.setLabel("Concluir");
         finalizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,6 +155,14 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         });
 
         dataText.setText("textField1");
+        dataText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dataTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dataTextFocusLost(evt);
+            }
+        });
 
         btnDelResponsaveis.setLabel("Remover da tarefa");
         btnDelResponsaveis.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -288,6 +313,48 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
+
+    private void descricaoTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descricaoTextFocusGained
+        // TODO add your handling code here: Insira descricao da tarefa aqui
+        if (descricaoText.getText().equals("Insira descricao da tarefa aqui"))  {
+            descricaoText.setText("");
+        }        
+    }//GEN-LAST:event_descricaoTextFocusGained
+
+    private void descricaoTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descricaoTextFocusLost
+        // TODO add your handling code here:
+        if (descricaoText.getText().equals(""))  {
+            descricaoText.setText("Insira descricao da tarefa aqui");
+        }          
+    }//GEN-LAST:event_descricaoTextFocusLost
+
+    private void tarefaTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tarefaTextFocusGained
+        // TODO add your handling code here:
+        if (tarefaText.getText().equals("Nova Tarefa"))  {
+            tarefaText.setText("");
+        }        
+    }//GEN-LAST:event_tarefaTextFocusGained
+
+    private void tarefaTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tarefaTextFocusLost
+        // TODO add your handling code here:
+        if (tarefaText.getText().equals(""))  {
+            tarefaText.setText("Nova Tarefa");
+        }        
+    }//GEN-LAST:event_tarefaTextFocusLost
+
+    private void dataTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataTextFocusGained
+        // TODO add your handling code here: 2018-01-01
+        if (dataText.getText().equals("2018-01-01"))  {
+            dataText.setText("");
+        }        
+    }//GEN-LAST:event_dataTextFocusGained
+
+    private void dataTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataTextFocusLost
+        // TODO add your handling code here:
+        if (dataText.getText().equals(""))  {
+            dataText.setText("2018-01-01");
+        } 
+    }//GEN-LAST:event_dataTextFocusLost
 
     /**
      * @param args the command line arguments

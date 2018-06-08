@@ -148,6 +148,8 @@
         <Property name="text" type="java.lang.String" value="Nova Tarefa"/>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tarefaTextFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tarefaTextFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tarefaTextActionPerformed"/>
       </Events>
     </Component>
@@ -186,6 +188,10 @@
       </Properties>
     </Component>
     <Component class="java.awt.TextArea" name="descricaoText">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="descricaoTextFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="descricaoTextFocusLost"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="finalizar">
       <Properties>
@@ -217,6 +223,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="textField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="dataTextFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="dataTextFocusLost"/>
+      </Events>
     </Component>
     <Component class="java.awt.List" name="responsaveisText">
     </Component>

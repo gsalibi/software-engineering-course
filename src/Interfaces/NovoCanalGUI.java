@@ -76,6 +76,14 @@ public class NovoCanalGUI extends javax.swing.JFrame {
         });
 
         txtCanalNome.setText("Novo Canal");
+        txtCanalNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCanalNomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCanalNomeFocusLost(evt);
+            }
+        });
         txtCanalNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCanalNomeActionPerformed(evt);
@@ -251,6 +259,20 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
+
+    private void txtCanalNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCanalNomeFocusGained
+        // TODO add your handling code here:
+        if (txtCanalNome.getText().equals("Novo Canal"))  {
+            txtCanalNome.setText("");
+        }
+    }//GEN-LAST:event_txtCanalNomeFocusGained
+
+    private void txtCanalNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCanalNomeFocusLost
+        // TODO add your handling code here:
+        if (txtCanalNome.getText().equals(""))  {
+            txtCanalNome.setText("Novo Canal");
+        }
+    }//GEN-LAST:event_txtCanalNomeFocusLost
 
     /**
      * @param args the command line arguments
