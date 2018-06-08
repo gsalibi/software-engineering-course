@@ -28,13 +28,14 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     public NovoCanalGUI(Usuario user, Sistema sistema) {
         initComponents();
         novo_canal = true;
+        atribuidos = new ArrayList<>();
         
         this.setTitle("Criar Novo Canal");     
         
         for (int i = 0; i < sistema.getUsuarios().size(); i++){
             usuariosText.add(sistema.getUsuarios().get(i).getNome());
         }
-        
+       
         this.sistema = sistema;
         this.dono = user;
     }
@@ -221,13 +222,7 @@ public class NovoCanalGUI extends javax.swing.JFrame {
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
         // TODO add your handling code here:
-        Canal canal = new Canal(txtCanalNome.getText(), dono, descricaoText.getText());
-      
-        for(Usuario u: atribuidos){
-            u.adicionaNoCanal(canal);
-        }
         
-        this.dispose();
     }//GEN-LAST:event_finalizarMouseClicked
 
     private void descartarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descartarMouseClicked
