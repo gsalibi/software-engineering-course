@@ -1,8 +1,9 @@
 package Classes_UML;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Canal {
+public class Canal implements Serializable {
 
 	private static int proximoId = 0;
 	private final int id;

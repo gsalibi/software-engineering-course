@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Classes_UML.Inicio;
+import Classes_UML.Serializador;
 import Classes_UML.Sistema;
 import Classes_UML.Tarefa;
 import Classes_UML.Usuario;
@@ -84,6 +85,11 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -355,6 +361,11 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
             dataText.setText("2018-01-01");
         } 
     }//GEN-LAST:event_dataTextFocusLost
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Serializador.gravaSistema(sistema);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

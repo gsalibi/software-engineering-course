@@ -1,9 +1,10 @@
 package Classes_UML;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Tarefa {
+public class Tarefa implements Serializable {
 
 	private static int proximoId = 0;
 	private final int id;

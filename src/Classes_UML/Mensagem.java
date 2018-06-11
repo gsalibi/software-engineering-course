@@ -1,8 +1,9 @@
 package Classes_UML;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Mensagem {
+public class Mensagem implements Serializable {
 
 	private static int proximoId = 0;
 	private final int id;

@@ -1,8 +1,9 @@
 package Classes_UML;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public final class Sistema {
+public class Sistema implements Serializable{
 
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Projeto> projetos;
@@ -36,5 +37,15 @@ public final class Sistema {
 	public ArrayList<Projeto> getProjetos(){
 		return projetos;
 	}
-	
+        @Override
+	public String toString(){
+            String s = new String();
+            for(Usuario usuario:usuarios){
+                s = s + "Usuario: " + usuario.getNome()+"\n";
+            }
+            for(Projeto projeto:projetos){
+                s = s + "Projeto: " + projeto.getNome()+"\n";
+            }        
+            return s;
+        }
 }

@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Classes_UML.Serializador;
 import Classes_UML.Sistema;
 import Classes_UML.Usuario;
 import java.awt.Color;
@@ -41,6 +42,11 @@ public class Login extends javax.swing.JFrame {
         button2 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         txtUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtUser.setText("Username");
@@ -224,6 +230,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtPassw.setEchoChar('*');
     }//GEN-LAST:event_txtPasswTextValueChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Serializador.gravaSistema(sistema);
+    }//GEN-LAST:event_formWindowClosing
     private NovoUsuario getCadastro(){
         return this.cadastro;
     }

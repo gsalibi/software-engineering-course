@@ -1,8 +1,9 @@
 package Classes_UML;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
 	private static int proximoId = 0;
 	protected final int id;

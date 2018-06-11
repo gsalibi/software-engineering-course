@@ -19,7 +19,7 @@ public class Inicio {
        public static void iniciaSimulacao(Sistema sistema){
                         
             //Dados inseridos à força so para simulaçao
-            int id =sistema.criaUsuario("UsuarioTeste");
+            int id = sistema.criaUsuario("UsuarioTeste");
             usuario = sistema.getUsuarios().get(id);
             usuario.setSenha("123");
             

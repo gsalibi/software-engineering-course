@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Classes_UML.Inicio;
+import Classes_UML.Serializador;
 import Classes_UML.Sistema;
 import Classes_UML.Usuario;
 import java.util.ArrayList;
@@ -96,6 +97,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -451,6 +455,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAddUserCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserCanalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddUserCanalActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Serializador.gravaSistema(sistema);
+    }//GEN-LAST:event_formWindowClosing
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables

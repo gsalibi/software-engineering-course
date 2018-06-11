@@ -6,6 +6,7 @@
 package Interfaces;
 
 import static Classes_UML.Inicio.sistema;
+import Classes_UML.Serializador;
 import Classes_UML.Sistema;
 import Classes_UML.Usuario;
 import java.util.ArrayList;
@@ -44,6 +45,11 @@ public class NovoUsuario extends javax.swing.JFrame {
         txtPassw = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         button1.setLabel("Finalizar");
         button1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,6 +212,11 @@ public class NovoUsuario extends javax.swing.JFrame {
             txtEmail.setText("Gilmar@gilmar.com.br");
         }        
     }//GEN-LAST:event_txtEmailFocusLost
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Serializador.gravaSistema(sistema);
+    }//GEN-LAST:event_formWindowClosing
     private Usuario getNovoUsuario(){
         return this.novoUsuario;
     }

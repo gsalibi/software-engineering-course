@@ -1,9 +1,10 @@
 package Classes_UML;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Projeto {
+public class Projeto implements Serializable {
 	private static int proximoId = 0;
 	private final int id;
 	private String nome;
