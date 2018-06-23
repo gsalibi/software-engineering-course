@@ -364,7 +364,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa1MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(0,sistema);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(0, sistema, this.usuario);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa1MouseClicked
 
@@ -374,19 +374,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa2MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(1,sistema);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(1, sistema, this.usuario);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa2MouseClicked
 
     private void btnTarefa3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa3MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(2,sistema);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(2, sistema, this.usuario);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa3MouseClicked
 
     private void btnTarefa4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa4MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3,sistema);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3, sistema, this.usuario);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa4MouseClicked
 
@@ -418,7 +418,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnNovaTarefaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaTarefaMouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1,sistema);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1, sistema, this.usuario);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnNovaTarefaMouseClicked
 

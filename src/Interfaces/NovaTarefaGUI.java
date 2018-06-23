@@ -24,11 +24,11 @@ public class NovaTarefaGUI extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public NovaTarefaGUI(int index_tarefa, Sistema sistema) {
+    public NovaTarefaGUI(int index_tarefa, Sistema sistema, Usuario usuario) {
         initComponents();
         if (index_tarefa >= 0){
             nova_tarefa = false;
-            tarefa = Inicio.usuario.getTarefas().get(index_tarefa);
+            tarefa = usuario.getTarefas().get(index_tarefa);
             this.setTitle("Editar tarefa: " + tarefa.getNome());
         }
         else{
