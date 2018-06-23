@@ -18,10 +18,12 @@ public class Usuario implements Serializable {
 	protected String nome;
 	protected boolean ativo;
         protected String email;
+        protected String cargo;
         private String senha;
 	protected ArrayList<Tarefa> tarefas;
 	protected ArrayList<Projeto> projetos;
 	protected ArrayList<Canal> canais;
+        private ArrayList<Usuario> contatos;
 	
         static void setProximoId(int proxId) {
             proximoId = proxId;
@@ -52,6 +54,7 @@ public class Usuario implements Serializable {
 	public Usuario(String nome){
 		this.nome = nome;
 		this.id = proximoId++;
+                this.cargo = "Desenvolvedor";
 		this.ativo = true;
 		tarefas = new ArrayList<Tarefa>();
 		canais = new ArrayList<Canal>();
@@ -70,6 +73,7 @@ public class Usuario implements Serializable {
 		this.nome = nome;
                 this.email = email;
                 this.senha = senha;
+                this.cargo = "Desenvolvedor";
 		this.id = proximoId++;
 		this.ativo = true;
 		tarefas = new ArrayList<Tarefa>();
@@ -106,7 +110,7 @@ public class Usuario implements Serializable {
             return this.tarefas;
 	}
 
-	// o retorno eh uma copia
+	// o retorno era uma copia, o Giovanni estragou
 	public ArrayList<Canal> getCanais() {
             return this.canais;
 	}
@@ -114,6 +118,14 @@ public class Usuario implements Serializable {
 	public int getId() {
 		return id;
 	}
+        
+        public void setCargo(String cargo){
+            this.cargo = cargo;
+        }
+        
+        public String getCargo(){
+            return cargo;
+        }
 	
 
 	public void adicionaNoCanal(Canal can){
@@ -153,6 +165,20 @@ public class Usuario implements Serializable {
             boolean retorno;
             retorno = this.senha.equals(senha);
             return retorno;            
+        }
+        
+        public void adicionaContato(Usuario contato){
+            if (!contatos.contains(contato)){
+                contatos.add(contato);
+            }
+        }
+        
+        public void deletaContato(Usuario contato){
+            contatos.remove(contato);
+        }
+        
+        public ArrayList<Usuario> getContatos(){
+            return new ArrayList<>(contatos);  
         }
         
         // Isso aqui é necessário para controle de duplicatas.
