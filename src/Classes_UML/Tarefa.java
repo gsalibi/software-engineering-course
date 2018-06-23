@@ -16,6 +16,7 @@ public class Tarefa implements Serializable {
 	private final int id;
 	private String nome;
 	private String status;
+        private int progresso;
 	private String feedback;
 	private String descricao;
 	private Date prazo;
@@ -42,6 +43,7 @@ public class Tarefa implements Serializable {
 		this.id = proximoId++;
 		this.descricao = descricao;
 		this.prazo = prazo;
+                this.progresso = 0;
 		usuariosAtribuidos = new ArrayList<Usuario>();
 	}
 	
@@ -72,6 +74,14 @@ public class Tarefa implements Serializable {
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
+        
+        public int getProgresso() {
+            return progresso;
+        }
+
+        public void setProgresso(int progresso) {
+            this.progresso = progresso;
+        }
 	
 	public String getDescricao() {
 		return descricao;
