@@ -23,6 +23,25 @@ public class Usuario implements Serializable {
 	protected ArrayList<Projeto> projetos;
 	protected ArrayList<Canal> canais;
 	
+        static void setProximoId(int proxId) {
+            proximoId = proxId;
+        }
+        
+        static int getProximoId() {
+            return proximoId;
+        }
+        
+        @Override
+        public String toString() {
+            String text = "Nome: " + this.nome + "(" + this.id + ")" + "\n";
+            text += "Email: " + this.email + "\n";
+            text += "Em " + this.tarefas.size() + " tarefas.\n";
+            text += "Em " + this.projetos.size() + " projetos.\n";
+            text += "Em " + this.canais.size() + " canais\n";
+                       
+            return text;
+        }
+        
         /**
          * Construtor
          * 
@@ -36,6 +55,7 @@ public class Usuario implements Serializable {
 		this.ativo = true;
 		tarefas = new ArrayList<Tarefa>();
 		canais = new ArrayList<Canal>();
+                projetos = new ArrayList<Projeto>();
 	}
         
         /**
@@ -54,6 +74,7 @@ public class Usuario implements Serializable {
 		this.ativo = true;
 		tarefas = new ArrayList<Tarefa>();
 		canais = new ArrayList<Canal>();
+                projetos = new ArrayList<Projeto>();
 	}
 
 	public String getNome() {

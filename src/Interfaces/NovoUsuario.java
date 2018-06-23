@@ -10,6 +10,8 @@ import Classes_UML.Serializador;
 import Classes_UML.Sistema;
 import Classes_UML.Usuario;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -73,7 +75,6 @@ public class NovoUsuario extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label1.setText("Nome :");
 
-        txtNome.setText("Gilmar");
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNomeFocusGained(evt);
@@ -90,7 +91,6 @@ public class NovoUsuario extends javax.swing.JFrame {
         label4.setName(""); // NOI18N
         label4.setText("Senha :");
 
-        txtEmail.setText("Gilmar@gilmar.com.br");
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtEmailFocusGained(evt);
@@ -106,7 +106,7 @@ public class NovoUsuario extends javax.swing.JFrame {
         });
 
         txtPassw.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtPassw.setText("*********");
+        txtPassw.setEchoChar('*');
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,16 +168,20 @@ public class NovoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_button2MouseClicked
 
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
-       
-        int id;
-        id = sistema.criaUsuario(txtNome.getText());
-        ArrayList<Usuario> usuarios = sistema.getUsuarios();
-        Usuario user;
-        user = usuarios.get(id);
-        user.setSenha(txtPassw.getText());
-        user.setEmail(txtEmail.getText());
-        usuarios.set(id, user);
-        this.dispose();
+        if (sistema.usuarioExiste(txtNome.getText())) {
+            JOptionPane.showMessageDialog(new JFrame(), "Já existe um usuário com esse nome!");
+        } else {
+            int id;
+            id = sistema.criaUsuario(txtNome.getText());
+            ArrayList<Usuario> usuarios = sistema.getUsuarios();
+            Usuario user;
+            user = usuarios.get(id);
+            user.setSenha(txtPassw.getText());
+            user.setEmail(txtEmail.getText());
+            usuarios.set(id, user);
+            this.dispose();
+        }
+  
         
     }//GEN-LAST:event_button1MouseClicked
 

@@ -110,9 +110,6 @@
       </Properties>
     </Component>
     <Component class="java.awt.TextField" name="txtNome">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Gilmar"/>
-      </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNomeFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNomeFocusLost"/>
@@ -136,9 +133,6 @@
       </Properties>
     </Component>
     <Component class="java.awt.TextField" name="txtEmail">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Gilmar@gilmar.com.br"/>
-      </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEmailFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtEmailFocusLost"/>
@@ -148,9 +142,9 @@
     <Component class="java.awt.TextField" name="txtPassw">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Padr&#xe3;o"/>
+          <Color id="Default Cursor"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="*********"/>
+        <Property name="echoChar" type="char" value="*"/>
       </Properties>
     </Component>
   </SubComponents>

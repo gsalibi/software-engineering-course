@@ -10,6 +10,8 @@ import Classes_UML.Sistema;
 import Classes_UML.Usuario;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 /**
  *
@@ -169,14 +171,21 @@ public class Login extends javax.swing.JFrame {
                 break;
             }
         }
+        
+        
         if (id != -1) {
-            Usuario User = users.get(id);
+            Usuario usr = users.get(id);
 
-            if (User.comparaSenha(passw)) {
-                TelaPrincipal tarefa = new TelaPrincipal(sistema, User);
+            if (usr.comparaSenha(passw)) {
+                System.out.println(usr);
+                TelaPrincipal tarefa = new TelaPrincipal(sistema, usr);
                 tarefa.setVisible(true);
                 this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
             }
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
         }
     }//GEN-LAST:event_button1MouseClicked
 
@@ -187,7 +196,7 @@ public class Login extends javax.swing.JFrame {
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_button2ActionPerformed
-
+    
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
         // TODO add your handling code here:
         cadastro = new NovoUsuario(sistema);

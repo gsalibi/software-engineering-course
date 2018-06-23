@@ -17,16 +17,19 @@ import java.util.ArrayList;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    private Usuario usuario = Inicio.usuario;
+    //private Usuario usuario = Inicio.usuario;
     private ArrayList<java.awt.Label> labels;
     private ArrayList<java.awt.Button> buttons;
     private ArrayList<javax.swing.JProgressBar> bars;
     private Sistema sistema;
-    private Usuario user;
+    private Usuario usuario;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal(Sistema sistema, Usuario user) {
+        this.sistema = sistema;        
+        this.usuario = user;
+
         initComponents();
         labels = new ArrayList<>();
         labels.add(lblTarefa1);
@@ -42,12 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         bars.add(barTarefa1);
         bars.add(barTarefa2);
         bars.add(barTarefa3);
-        bars.add(barTarefa4);
-        this.sistema = sistema;
-        
-        this.user = user;
-        
-        
+        bars.add(barTarefa4);        
     }
 
     /**
@@ -438,7 +436,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
         String texto = chatMSG.getText();
         if (!texto.isEmpty()) {
-            chatBoard.setText(chatBoard.getText()+user.getNome()+":\n  "+chatMSG.getText()+"\n");
+            chatBoard.setText(chatBoard.getText()+usuario.getNome()+":\n  "+chatMSG.getText()+"\n");
             chatMSG.setText("");
         }
     }//GEN-LAST:event_btnEnviarMouseClicked
@@ -448,7 +446,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnAddUserCanalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserCanalMouseClicked
-        NovoCanalGUI guiC = new NovoCanalGUI(user, sistema);
+        NovoCanalGUI guiC = new NovoCanalGUI(usuario, sistema);
         guiC.setVisible(true);
     }//GEN-LAST:event_btnAddUserCanalMouseClicked
 

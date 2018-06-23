@@ -24,6 +24,7 @@ public class Serializador {
         //Grava um o sistema atual em um arquivo chamado sistema.
         try {
             try (ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream("Sistema"))) {
+                sistema.leProximoId();
                 objOutput.writeObject(sistema);
             }
 
@@ -44,8 +45,11 @@ public class Serializador {
             }
         } catch (IOException | ClassNotFoundException erro1) {
             System.out.printf("Erro: %s", erro1.getMessage());
+            sistemaLido = null; // reseta como nulo para a Main gerar um novo
         }
-
+        if (sistemaLido != null) {
+            sistemaLido.gravaProximoId();
+        }
         return (sistemaLido);
     }
 

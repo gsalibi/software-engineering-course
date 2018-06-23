@@ -14,7 +14,8 @@ public class Sistema implements Serializable{
 
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Projeto> projetos;
-	
+	private int proximoUserID;
+        
         /**
          * Construtor.
          */
@@ -82,6 +83,20 @@ public class Sistema implements Serializable{
 		projetos.add(new Projeto(nome));
 	}
 	
+        /**
+         * Verifica se já existe um usuário com esse nome
+         * @param nome O nome a ser retornado
+         * @return Um boolean
+         */
+        public boolean usuarioExiste(String nome) {
+            for (Usuario usuario : usuarios) {
+                if (usuario.getNome().equals(nome)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
 	// getters
 	public ArrayList<Usuario> getUsuarios(){
 		return usuarios;
@@ -95,11 +110,22 @@ public class Sistema implements Serializable{
 	public String toString(){
             String s = new String();
             for(Usuario usuario:usuarios){
-                s = s + "Usuario: " + usuario.getNome()+"\n";
+                s = s + usuario + "\n";
             }
             for(Projeto projeto:projetos){
                 s = s + "Projeto: " + projeto.getNome()+"\n";
             }        
             return s;
+        }
+        
+    // para preservar o próximo ID do Usuario
+        public void leProximoId() {
+            this.proximoUserID = Usuario.getProximoId();
+            System.out.println("Li o próximo ID e ele é " + this.proximoUserID);
+        }
+        
+        public void gravaProximoId() {
+            Usuario.setProximoId(this.proximoUserID);
+            System.out.println("Gravei o próximo ID que é " + this.proximoUserID);
         }
 }
