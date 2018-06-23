@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Tarefa. Uma unidade de trabalho coletivo conforme as especificações do projeto.
+ *  
+ * @author guilherme
+ */
+
 public class Tarefa implements Serializable {
 
 	private static int proximoId = 0;
@@ -15,6 +21,14 @@ public class Tarefa implements Serializable {
 	private Date prazo;
 	private ArrayList<Usuario> usuariosAtribuidos;
 	
+        /**
+         * Construtor. Inicializa uma nova Tarefa e atribui-lhe um identificador único.
+         * 
+         * @param nome O nome publicamente visível da Tarefa.
+         * @param descricao Uma descrição pública da Tarefa.
+         * @param prazo Uma data em que se espera que a Tarefa seja concluída.
+         */
+        
 	public Tarefa(String nome, String descricao, Date prazo){
 		this.nome = nome;
 		this.id = proximoId++;
@@ -81,6 +95,17 @@ public class Tarefa implements Serializable {
 		usuariosAtribuidos.remove(usuarioRemovido);
 	}
 	
-	
+	 // Isso aqui é necessário para controle de duplicatas.
+        @Override
+        public boolean equals(Object object)
+        {
+            boolean isEqual = false;
+            
+            if (object != null && object instanceof Tarefa) {
+                isEqual = (this.id == ((Tarefa) object).getId());
+            }
+            
+            return isEqual;
+        }
 	
 }

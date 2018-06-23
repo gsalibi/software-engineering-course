@@ -3,6 +3,14 @@ package Classes_UML;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Usuario
+ * 
+ * Representa qualquer indivíduo que utilize o sistema.
+ * 
+ * @author guilherme
+ */
+
 public class Usuario implements Serializable {
 
 	private static int proximoId = 0;
@@ -15,6 +23,13 @@ public class Usuario implements Serializable {
 	protected ArrayList<Projeto> projetos;
 	protected ArrayList<Canal> canais;
 	
+        /**
+         * Construtor
+         * 
+         * Instancia um novo Usuario e atribui-lhe um identificador sequencial único
+         * 
+         * @param nome O nome publicamente visível do usuário
+         */
 	public Usuario(String nome){
 		this.nome = nome;
 		this.id = proximoId++;
@@ -22,7 +37,16 @@ public class Usuario implements Serializable {
 		tarefas = new ArrayList<Tarefa>();
 		canais = new ArrayList<Canal>();
 	}
-        public Usuario(String nome,String email,String senha){
+        
+        /**
+         * Construtor
+         * 
+         * Instancia um novo Usuario e atribui-lhe um identificador sequencial único
+         * @param nome O nome publicamente visível do usuário
+         * @param email Um endereço de email
+         * @param senha Uma senha de acesso
+         */
+        public Usuario(String nome, String email, String senha){
 		this.nome = nome;
                 this.email = email;
                 this.senha = senha;
@@ -70,34 +94,34 @@ public class Usuario implements Serializable {
 		return id;
 	}
 	
-	//
-	public void adicionaNoCanal(Canal x){
-		if (!canais.contains(x))
-			canais.add(x);
+
+	public void adicionaNoCanal(Canal can){
+		if (!canais.contains(can))
+			canais.add(can);
 	}
 	
-	public void adicionaNovaTarefa(Tarefa x){
-		if (!tarefas.contains(x)){
-                    x.addUsuarioAtribuido(this);
-                    tarefas.add(x);
+	public void adicionaNovaTarefa(Tarefa tar){
+		if (!tarefas.contains(tar)){
+                    tar.addUsuarioAtribuido(this);
+                    tarefas.add(tar);
                 }
 	}
 	
-	public void removeDoCanal(Canal x){
-		canais.remove(x);
+	public void removeDoCanal(Canal can){
+		canais.remove(can);
 	}
 	
-	public void removeTarefa(Tarefa x){
-		tarefas.remove(x);
+	public void removeTarefa(Tarefa tar){
+		tarefas.remove(tar);
 	}
 	
-	public void adicionaProjeto(Projeto x){
-		if (!projetos.contains(x))
-			projetos.add(x);
+	public void adicionaProjeto(Projeto proj){
+		if (!projetos.contains(proj))
+			projetos.add(proj);
 	}
 	
-	public void removeProjeto(Projeto x){
-		projetos.remove(x);
+	public void removeProjeto(Projeto proj){
+		projetos.remove(proj);
 	}
 	
 	public ArrayList<Projeto> getProjetos() {
@@ -108,5 +132,18 @@ public class Usuario implements Serializable {
             boolean retorno;
             retorno = this.senha.equals(senha);
             return retorno;            
+        }
+        
+        // Isso aqui é necessário para controle de duplicatas.
+        @Override
+        public boolean equals(Object object)
+        {
+            boolean isEqual = false;
+            
+            if (object != null && object instanceof Usuario) {
+                isEqual = (this.id == ((Usuario) object).getId());
+            }
+            
+            return isEqual;
         }
 }
