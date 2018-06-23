@@ -80,6 +80,13 @@ public class Tarefa implements Serializable {
         }
 
         public void setProgresso(int progresso) {
+            
+            // progresso eh truncado em [0,100]
+            if (progresso < 0)
+                progresso = 0;
+            if (progresso > 100)
+                progresso = 100;
+            
             this.progresso = progresso;
         }
 	
