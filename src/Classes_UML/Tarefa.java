@@ -21,6 +21,14 @@ public class Tarefa implements Serializable {
 	private Date prazo;
 	private ArrayList<Usuario> usuariosAtribuidos;
 	
+        static void setProximoId(int proxId) {
+            proximoId = proxId;
+        }
+        
+        static int getProximoId() {
+            return proximoId;
+        }
+        
         /**
          * Construtor. Inicializa uma nova Tarefa e atribui-lhe um identificador único.
          * 

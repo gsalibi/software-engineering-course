@@ -17,11 +17,19 @@ public class Canal implements Serializable {
 	private final int id;
 	private int idProprietario;
 	private String nome;
-    private String descricao;
+        private String descricao;
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Integer> idModeradores;
 	private ArrayList<Mensagem> mensagens;
-	
+             
+        static void setProximoId(int proxId) {
+            proximoId = proxId;
+        }
+        
+        static int getProximoId() {
+            return proximoId;
+        }
+        
         /**
          * Construtor
          * 
@@ -29,7 +37,7 @@ public class Canal implements Serializable {
          * @param proprietario (obrigatório) O usuário responsável pelo canal, habilitado a adicionar e remove moderadores, usuários, e editar propriedades do canal.
          * @param desc (obrigatório) Descrição do canal que será exibida aos demais usuários 
          */
-        
+          
 	public Canal(String nome, Usuario proprietario, String desc){
 		this.id = proximoId++;
 		this.nome = nome;

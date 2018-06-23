@@ -23,6 +23,14 @@ public class Projeto implements Serializable {
 	private ArrayList<Usuario> equipe;
 	private ArrayList<Canal> canais;
 	
+        static void setProximoId(int proxId) {
+            proximoId = proxId;
+        }
+        
+        static int getProximoId() {
+            return proximoId;
+        }
+        
         /**
          * Construtor. Inicializa um novo Projeto e atribui-lhe um id identificador único.
          * 

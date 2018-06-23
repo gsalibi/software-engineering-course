@@ -14,7 +14,11 @@ public class Sistema implements Serializable{
 
 	private ArrayList<Usuario> usuarios;
 	private ArrayList<Projeto> projetos;
-	private int proximoUserID;
+        
+        private int proxIdUsuario;
+        private int proxIdProjeto;
+        private int proxIdTarefa;
+        private int proxIdCanal;
         
         /**
          * Construtor.
@@ -118,14 +122,22 @@ public class Sistema implements Serializable{
             return s;
         }
         
-    // para preservar o próximo ID do Usuario
         public void leProximoId() {
-            this.proximoUserID = Usuario.getProximoId();
-            //System.out.println("Li o próximo ID e ele é " + this.proximoUserID);
+            this.proxIdUsuario = Usuario.getProximoId();
+            this.proxIdProjeto = Projeto.getProximoId();
+            this.proxIdCanal = Canal.getProximoId();
+            this.proxIdTarefa = Tarefa.getProximoId();
         }
         
         public void gravaProximoId() {
-            Usuario.setProximoId(this.proximoUserID);
-            //System.out.println("Gravei o próximo ID que é " + this.proximoUserID);
+            Usuario.setProximoId(this.proxIdUsuario);
+            Canal.setProximoId(this.proxIdCanal);
+            Projeto.setProximoId(this.proxIdProjeto);
+            Tarefa.setProximoId(this.proxIdTarefa);
+            System.out.println("Próximos IDs:");
+            System.out.println("Usuario: " + this.proxIdUsuario);
+            System.out.println("Canal: " + this.proxIdCanal);
+            System.out.println("Projeto: " + this.proxIdProjeto);
+            System.out.println("Tarefa: " + this.proxIdTarefa);
         }
 }
