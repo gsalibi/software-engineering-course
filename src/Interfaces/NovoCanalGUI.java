@@ -236,6 +236,25 @@ public class NovoCanalGUI extends javax.swing.JFrame {
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
         // TODO add your handling code here:
+        if (novo_canal) {
+            String nome = txtCanalNome.getText();
+            String desc = descricaoText.getText();
+            canal = new Canal(nome, this.dono, desc);
+            
+            // Foi o NetBeans que gerou isso aqui a partir do meu for. Não faço a minima ideia de como funciona --Gama
+            atribuidos.stream().map((usr) -> {
+                canal.adicionaUsuario(usr);
+                return usr;
+            }).forEachOrdered((usr) -> {
+                usr.adicionaNoCanal(canal);
+            });
+            
+            this.dispose();
+            
+                    
+        } else {
+            // TODO: lidar com edição de canal
+        }
         
     }//GEN-LAST:event_finalizarMouseClicked
 
