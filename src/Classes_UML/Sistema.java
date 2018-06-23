@@ -121,11 +121,11 @@ public class Sistema implements Serializable{
     // para preservar o próximo ID do Usuario
         public void leProximoId() {
             this.proximoUserID = Usuario.getProximoId();
-            System.out.println("Li o próximo ID e ele é " + this.proximoUserID);
+            //System.out.println("Li o próximo ID e ele é " + this.proximoUserID);
         }
         
         public void gravaProximoId() {
             Usuario.setProximoId(this.proximoUserID);
-            System.out.println("Gravei o próximo ID que é " + this.proximoUserID);
+            //System.out.println("Gravei o próximo ID que é " + this.proximoUserID);
         }
 }
