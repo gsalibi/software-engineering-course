@@ -7,6 +7,10 @@ package Interfaces;
 
 import Classes_UML.Serializador;
 import Classes_UML.Sistema;
+import Classes_UML.Usuario;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +26,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.sistema = sistema;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +49,6 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -64,64 +67,24 @@ public class Login extends javax.swing.JFrame {
         jButton1.setText("entrar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                button1MouseClicked(evt);
+                jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
+
         jButton2.setForeground(new java.awt.Color(25, 45, 52));
         jButton2.setText("fazer seu cadastro");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                button2MouseClicked(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
-            }
-        });
-        txtPassw.setMinimumSize(new java.awt.Dimension(20, 180));
-        txtPassw.setName(""); // NOI18N
-        txtPassw.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPasswFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPasswFocusLost(evt);
-            }
-        });
-        txtPassw.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswActionPerformed(evt);
-            }
-        });
-        txtPassw.addTextListener(new java.awt.event.TextListener() {
-            public void textValueChanged(java.awt.event.TextEvent evt) {
-                txtPasswTextValueChanged(evt);
+                jButton2MouseClicked(evt);
             }
         });
 
+        txtPassw.setMinimumSize(new java.awt.Dimension(20, 180));
+        txtPassw.setName(""); // NOI18N
+
         txtUser.setMinimumSize(new java.awt.Dimension(20, 180));
         txtUser.setName(""); // NOI18N
-        txtUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtUser.setText("");
-        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUserFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUserFocusLost(evt);
-            }
-        });
-        txtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserActionPerformed(evt);
-            }
-        });
+
         jLabel2.setForeground(new java.awt.Color(25, 45, 52));
         jLabel2.setText("nome do usuário");
 
@@ -190,51 +153,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
-    private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
-        // TODO add your handling code here:
-        String username = txtUser.getText();
-        String passw = txtPassw.getText();
-        
-        ArrayList<Usuario> users  = sistema.getUsuarios();
-        int id = -1;
-        for (Usuario target: users)  {
-            if (target.getNome().equals(username)) {
-                id = target.getId();
-                break;
-            }
-        }
-        
-        
-        if (id != -1) {
-            Usuario usr = users.get(id);
-
-            if (usr.comparaSenha(passw)) {
-                System.out.println(usr);
-                TelaPrincipal tarefa = new TelaPrincipal(sistema, usr);
-                tarefa.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
-        }
-    }//GEN-LAST:event_button1MouseClicked
-
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
-
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button2ActionPerformed
-    
-    private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
-        // TODO add your handling code here:
-        cadastro = new NovoUsuario(sistema);
-        cadastro.setVisible(true);      
-    }//GEN-LAST:event_button2MouseClicked
-
     private void txtPasswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswActionPerformed
@@ -276,6 +194,43 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         Serializador.gravaSistema(sistema);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        cadastro = new NovoUsuario(sistema);
+        cadastro.setVisible(true);  
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+         String username = txtUser.getText();
+        String passw = txtPassw.getText();
+        
+        ArrayList<Usuario> users  = sistema.getUsuarios();
+        int id = -1;
+        for (Usuario target: users)  {
+            if (target.getNome().equals(username)) {
+                id = target.getId();
+                break;
+            }
+        }
+        
+        
+        if (id != -1) {
+            Usuario usr = users.get(id);
+
+            if (usr.comparaSenha(passw)) {
+                System.out.println(usr);
+                TelaPrincipal tarefa = new TelaPrincipal(sistema, usr);
+                tarefa.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
     private NovoUsuario getCadastro(){
         return this.cadastro;
     }
