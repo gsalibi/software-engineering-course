@@ -82,9 +82,12 @@ public class Sistema implements Serializable{
 		/**
 		 * criaProjeto. Inicializa um novo projeto e atribui-lhe ao sistema.
 		 * @param nome O nome publicamente visível do projeto
+                 * @return o ID do projeto
 		 */
-	public void criaProjeto(String nome){
-		projetos.add(new Projeto(nome));
+	public int criaProjeto(String nome){
+            Projeto proj = new Projeto(nome);
+            projetos.add(proj);
+            return proj.getId();
 	}
 	
         /**

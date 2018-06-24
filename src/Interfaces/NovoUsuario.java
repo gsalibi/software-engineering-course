@@ -180,6 +180,7 @@ public class NovoUsuario extends javax.swing.JFrame {
             user.setEmail(txtEmail.getText());
             usuarios.set(id, user);
             this.dispose();
+            JOptionPane.showMessageDialog(new JFrame(), "Seja bem-vindo, " + user.getNome() + "!");
         }
   
         

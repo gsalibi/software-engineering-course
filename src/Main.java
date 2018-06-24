@@ -26,7 +26,7 @@ public class Main {
         }
         System.out.println(sistema);
         
-        //Inicio.iniciaSimulacao(sistema);
+        Inicio.iniciaSimulacao(sistema);
         Login tela = new Login(sistema);
         tela.setVisible(true);
     }

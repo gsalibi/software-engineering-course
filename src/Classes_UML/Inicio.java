@@ -23,11 +23,17 @@ public class Inicio {
             usuario = sistema.getUsuarios().get(id);
             usuario.setSenha("123");
             
-            sistema.criaProjeto("ProjetoTeste");
-            Tarefa tarefa = new Tarefa("Tarefa 01 - Teste", "Descrição da tarefa 01", Date.valueOf("2018-09-26"));
+            int projID = sistema.criaProjeto("Campeonato Internacional de Amarelinha Subaquática");
+            
+            Tarefa tarefa = new Tarefa("Contatar Guarda Costeira", "Verificar com a guarda costeira",  Date.valueOf("2018-09-26"));
+            
             usuario.adicionaNovaTarefa(tarefa);
-            Tarefa tarefa2 = new Tarefa("Tarefa 02 - Outro Teste", "Descrição da tarefa 02", Date.valueOf("2018-09-27"));
+            Tarefa tarefa2 = new Tarefa("Fechar contrato com fábrica de giz", "Verificar melhores preços", Date.valueOf("2018-09-27"));
             usuario.adicionaNovaTarefa(tarefa2);
+            
+            sistema.criaProjeto("Website do Curupira");
+            Tarefa tarefa3 = new Tarefa("Nome de domínio", "Reservar nome de domínio curupira.com.br", Date.valueOf("2018-09-10"));
+            
             
             id = sistema.criaUsuario("Colega da Silva");
             usuario = sistema.getUsuarios().get(id);
