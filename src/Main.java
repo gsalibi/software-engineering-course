@@ -6,6 +6,7 @@ import Interfaces.Login;
 import java.sql.Date;
 
 public class Main {
+    // Esta é a main usada para mostrar o chat
 
     public static void main(String args[]) {
         //Bug, se as linhas forem apagadas aparecem muitas exceptions 
