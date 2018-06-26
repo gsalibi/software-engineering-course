@@ -48,9 +48,17 @@ public class Canal implements Serializable {
 		mensagens = new ArrayList<Mensagem>();
 		usuarios = new ArrayList<Usuario>();
 		
-        this.descricao = desc;
+                 this.descricao = desc;
 	}
 
+        public String getDesc(){
+            return this.descricao;
+        }
+        
+        public void setDesc(String desc) {
+            this.descricao = desc;
+        }
+        
 	public int getId(){
 		return id;
 	}
@@ -90,9 +98,7 @@ public class Canal implements Serializable {
 		if (removido.getId() == idProprietario)
 			return;
 		
-		removido.removeDoCanal(this);
 		usuarios.remove(removido);
-		removeModerador(removido.getId());
 	}
 	    /**
          * Retorna uma cópia da lista atual de usuários do canal.

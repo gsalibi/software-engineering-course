@@ -12,6 +12,7 @@ import Classes_UML.Canal;
 import Classes_UML.Usuario;
 import Classes_UML.Mensagem;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
 
 /**
@@ -425,6 +426,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             chatUsers.setModel(listModel);
             
             AtualizaMSGBoard(canal);
+        } else {
+            chatBoard.setText("");
+            chatMSG.setText("");
+            chatUsers.setListData(new Vector());
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -471,8 +476,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnAddUserCanalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserCanalMouseClicked
-        NovoCanalGUI guiC = new NovoCanalGUI(usuario, sistema);
-        guiC.setVisible(true);
+        ArrayList<Canal> canais = usuario.getCanais();
+        if (canais.size() > 0) {
+            int id = canais.get(0).getId();
+            NovoCanalGUI guiC = new NovoCanalGUI(id, usuario, sistema);
+            guiC.setVisible(true);
+        }
     }//GEN-LAST:event_btnAddUserCanalMouseClicked
 
     private void btnAddUserCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserCanalActionPerformed

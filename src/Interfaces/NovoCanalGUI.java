@@ -26,19 +26,34 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public NovoCanalGUI(Usuario user, Sistema sistema) {
+    public NovoCanalGUI(int index_canal, Usuario user, Sistema sistema) {
         initComponents();
-        novo_canal = true;
-        atribuidos = new ArrayList<>();
         
-        this.setTitle("Criar Novo Canal");     
+        if(index_canal >= 0) {
+            novo_canal = false;
+            canal = user.getCanais().get(index_canal);
+            this.setTitle(canal.getNome());
+        }
+        else{
+            novo_canal = true;
+            canal = new Canal("Novo Canal", user, "Insira a descrição do canal aqui");
+            this.setTitle("Criar Novo Canal");
+            
+        }
+        txtCanalNome.setText(canal.getNome());
+        descricaoText.setText(canal.getDesc());
         
-        for (int i = 0; i < sistema.getUsuarios().size(); i++){
-            usuariosText.add(sistema.getUsuarios().get(i).getNome());
+        
+        atribuidos = canal.getUsuarios();
+        for (Usuario usr:atribuidos){
+            responsaveisText.add(usr.getNome());
+        }
+        
+        for (Usuario usr:sistema.getUsuarios()){
+            usuariosText.add(usr.getNome());
         }
        
         this.sistema = sistema;
-        this.dono = user;
     }
 
     /**
@@ -247,26 +262,22 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_descartarActionPerformed
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
-        // TODO add your handling code here:
-        if (novo_canal) {
-            String nome = txtCanalNome.getText();
-            String desc = descricaoText.getText();
-            canal = new Canal(nome, this.dono, desc);
-            
-            // Foi o NetBeans que gerou isso aqui a partir do meu for. Não faço a minima ideia de como funciona --Gama
-            atribuidos.stream().map((usr) -> {
-                canal.adicionaUsuario(usr);
-                return usr;
-            }).forEachOrdered((usr) -> {
-                usr.adicionaNoCanal(canal);
-            });
-            
-            this.dispose();
-            
-                    
-        } else {
-            // TODO: lidar com edição de canal
+           
+        String nome = txtCanalNome.getText();
+        String desc = descricaoText.getText();
+        canal.setNome(nome);
+        canal.setDesc(desc);
+
+        for (Usuario usr: canal.getUsuarios()) {
+            usr.removeDoCanal(canal);
+            canal.removeUsuario(usr);
         }
+        for (Usuario usr: atribuidos) {
+            canal.adicionaUsuario(usr);
+            usr.adicionaNoCanal(canal);
+        }
+
+        this.dispose();
         
     }//GEN-LAST:event_finalizarMouseClicked
 
