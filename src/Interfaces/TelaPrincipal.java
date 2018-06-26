@@ -481,6 +481,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             int id = canais.get(0).getId();
             NovoCanalGUI guiC = new NovoCanalGUI(id, usuario, sistema);
             guiC.setVisible(true);
+        } else {
+            NovoCanalGUI guiC = new NovoCanalGUI(-1, usuario, sistema);
+            guiC.setVisible(true);
         }
     }//GEN-LAST:event_btnAddUserCanalMouseClicked
 

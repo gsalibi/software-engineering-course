@@ -8,6 +8,8 @@ import Classes_UML.Tarefa;
 import Classes_UML.Usuario;
 import java.sql.Date;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * tentativa de fazer uma janela de criação de tarefas
@@ -23,16 +25,24 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     private ArrayList<Usuario> atribuidos;
     private Sistema sistema;
     private Usuario dono;
+    private Usuario user;
     /**
      * Creates new form NewJFrame
      */
     public NovoCanalGUI(int index_canal, Usuario user, Sistema sistema) {
         initComponents();
         
+        this.user = user;
+        
         if(index_canal >= 0) {
             novo_canal = false;
-            canal = user.getCanais().get(index_canal);
-            this.setTitle(canal.getNome());
+            for(Canal ch: user.getCanais()){
+                if(ch.getId() == index_canal){
+                    canal = ch;
+                    break;
+                }
+            }
+            
         }
         else{
             novo_canal = true;
@@ -263,18 +273,36 @@ public class NovoCanalGUI extends javax.swing.JFrame {
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
            
-        String nome = txtCanalNome.getText();
-        String desc = descricaoText.getText();
-        canal.setNome(nome);
-        canal.setDesc(desc);
+        if (canal.getIdProprietario() == user.getId() || canal.getModeradores().contains(user.getId())) {
+            String nome = txtCanalNome.getText();
+            String desc = descricaoText.getText();
+            canal.setNome(nome);
+            canal.setDesc(desc);
 
-        for (Usuario usr: canal.getUsuarios()) {
-            usr.removeDoCanal(canal);
-            canal.removeUsuario(usr);
-        }
-        for (Usuario usr: atribuidos) {
-            canal.adicionaUsuario(usr);
-            usr.adicionaNoCanal(canal);
+            for (Usuario usr: canal.getUsuarios()) {
+                usr.removeDoCanal(canal);
+                canal.removeUsuario(usr);
+            }
+            int doom = -1;
+            for (Usuario usr: atribuidos) {
+                if (usr.getId() == canal.getIdProprietario()){
+                    doom = 1;
+                    break;
+                }
+            }
+            if(doom == 1) {
+                for (Usuario usr: atribuidos) {
+                    canal.adicionaUsuario(usr);
+                    usr.adicionaNoCanal(canal);
+                }
+            } else {
+                for (Usuario usr: canal.getUsuarios()) {
+                    usr.removeDoCanal(canal);
+                    canal.removeUsuario(usr);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "You have no power here!");
         }
 
         this.dispose();
