@@ -8,8 +8,10 @@ package Interfaces;
 import Classes_UML.Serializador;
 import Classes_UML.Sistema;
 import Classes_UML.Usuario;
+import java.awt.Component;
+import java.awt.Frame;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,16 +19,17 @@ import javax.swing.JOptionPane;
  * @author Giordano Mattiello
  */
 public class Login extends javax.swing.JFrame {
-    NovoUsuario cadastro;
     private Sistema sistema;
     /**
      * Creates new form Login
      */
     public Login(Sistema sistema) {
-        initComponents();
         this.sistema = sistema;
+        initComponents();
+        desliguePainelCadastro();
+        liguePainelLogin();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,176 +39,317 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        txtPassw = new javax.swing.JPasswordField();
-        txtUser = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        cadastroJPanel = new javax.swing.JPanel();
+        cadastroUserIcon = new javax.swing.JLabel();
+        informacaoJLabel = new javax.swing.JLabel();
+        usuarioCadastroJTextField = new javax.swing.JTextField();
+        emailCadastroJTextField = new javax.swing.JTextField();
+        senhaCadastroJPasswordField = new javax.swing.JPasswordField();
+        senhaRepetidaJPasswordField = new javax.swing.JPasswordField();
+        areaEmailCadastroJLabel = new javax.swing.JLabel();
+        senhaRepetidaIcon = new javax.swing.JLabel();
+        senhaCadastroIcon = new javax.swing.JLabel();
+        usuarioCadastroIcon = new javax.swing.JLabel();
+        areaSenhaCadastroJLabel = new javax.swing.JLabel();
+        areaUsuarioCadastroJLabel = new javax.swing.JLabel();
+        areaSenhaRepetidaJLabel = new javax.swing.JLabel();
+        tituloJLabel = new javax.swing.JLabel();
+        stripCadastroJLabel = new javax.swing.JLabel();
+        voltarJButton = new javax.swing.JLabel();
+        cadastrarJButton = new javax.swing.JButton();
+        cadastroPanelBackground = new javax.swing.JLabel();
+        loginJPanel = new javax.swing.JPanel();
+        logoJLabel = new javax.swing.JLabel();
+        loginJButton = new javax.swing.JButton();
+        sairJButton = new javax.swing.JButton();
+        usuarioIconeJLabel = new javax.swing.JLabel();
+        senhaIconeJLabel = new javax.swing.JLabel();
+        usuarioJTextField = new javax.swing.JTextField();
+        cadastreAquiJButton = new javax.swing.JButton();
+        stripJLabel = new javax.swing.JLabel();
+        senhaJPasswordField = new javax.swing.JPasswordField();
+        continuarConectadoJCheckBox = new javax.swing.JCheckBox();
+        areaSenhaJLabel = new javax.swing.JLabel();
+        areaUsuarioJLabel = new javax.swing.JLabel();
+        loginPanelBackground = new javax.swing.JLabel();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(300, 250));
+        setMinimumSize(new java.awt.Dimension(300, 250));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(300, 250));
+        setSize(new java.awt.Dimension(300, 250));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/login-left.jpg"))); // NOI18N
+        cadastroJPanel.setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/login-top.jpg"))); // NOI18N
+        cadastroUserIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EmailIcon.png"))); // NOI18N
+        cadastroJPanel.add(cadastroUserIcon);
+        cadastroUserIcon.setBounds(25, 96, 30, 25);
 
-        jPanel1.setBackground(new java.awt.Color(170, 198, 209));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 489));
+        informacaoJLabel.setFont(new java.awt.Font("Helvetica Light", 0, 11)); // NOI18N
+        informacaoJLabel.setForeground(new java.awt.Color(58, 84, 165));
+        informacaoJLabel.setText("Obtenha acesso às implementações dos releases 1 e 2");
+        cadastroJPanel.add(informacaoJLabel);
+        informacaoJLabel.setBounds(4, 40, 290, 14);
 
-        jButton1.setForeground(new java.awt.Color(25, 45, 52));
-        jButton1.setText("entrar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        usuarioCadastroJTextField.setFont(new java.awt.Font("Helvetica Light", 0, 15)); // NOI18N
+        usuarioCadastroJTextField.setForeground(new java.awt.Color(153, 153, 153));
+        usuarioCadastroJTextField.setText("Usuário");
+        usuarioCadastroJTextField.setBorder(null);
+        usuarioCadastroJTextField.setCaretColor(new java.awt.Color(153, 153, 153));
+        usuarioCadastroJTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                usuarioCadastroJTextFieldMouseClicked(evt);
             }
         });
+        cadastroJPanel.add(usuarioCadastroJTextField);
+        usuarioCadastroJTextField.setBounds(57, 68, 200, 20);
 
-        jButton2.setForeground(new java.awt.Color(25, 45, 52));
-        jButton2.setText("fazer seu cadastro");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        emailCadastroJTextField.setFont(new java.awt.Font("Helvetica Light", 0, 15)); // NOI18N
+        emailCadastroJTextField.setForeground(new java.awt.Color(153, 153, 153));
+        emailCadastroJTextField.setText("Email");
+        emailCadastroJTextField.setBorder(null);
+        emailCadastroJTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                emailCadastroJTextFieldMouseClicked(evt);
             }
         });
+        cadastroJPanel.add(emailCadastroJTextField);
+        emailCadastroJTextField.setBounds(57, 100, 200, 20);
 
-        txtPassw.setMinimumSize(new java.awt.Dimension(20, 180));
-        txtPassw.setName(""); // NOI18N
+        senhaCadastroJPasswordField.setFont(new java.awt.Font("Helvetica Light", 0, 15)); // NOI18N
+        senhaCadastroJPasswordField.setForeground(new java.awt.Color(153, 153, 153));
+        senhaCadastroJPasswordField.setText("Senha");
+        senhaCadastroJPasswordField.setBorder(null);
+        senhaCadastroJPasswordField.setCaretColor(new java.awt.Color(153, 153, 153));
+        senhaCadastroJPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senhaCadastroJPasswordFieldMouseClicked(evt);
+            }
+        });
+        cadastroJPanel.add(senhaCadastroJPasswordField);
+        senhaCadastroJPasswordField.setBounds(57, 132, 200, 20);
 
-        txtUser.setMinimumSize(new java.awt.Dimension(20, 180));
-        txtUser.setName(""); // NOI18N
+        senhaRepetidaJPasswordField.setFont(new java.awt.Font("Helvetica Light", 0, 15)); // NOI18N
+        senhaRepetidaJPasswordField.setForeground(new java.awt.Color(153, 153, 153));
+        senhaRepetidaJPasswordField.setText("Senha");
+        senhaRepetidaJPasswordField.setBorder(null);
+        senhaRepetidaJPasswordField.setCaretColor(new java.awt.Color(153, 153, 153));
+        senhaRepetidaJPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senhaRepetidaJPasswordFieldMouseClicked(evt);
+            }
+        });
+        cadastroJPanel.add(senhaRepetidaJPasswordField);
+        senhaRepetidaJPasswordField.setBounds(57, 166, 210, 20);
 
-        jLabel2.setForeground(new java.awt.Color(25, 45, 52));
-        jLabel2.setText("nome do usuário");
+        areaEmailCadastroJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginPanelArea.png"))); // NOI18N
+        cadastroJPanel.add(areaEmailCadastroJLabel);
+        areaEmailCadastroJLabel.setBounds(20, 93, 260, 30);
 
-        jLabel3.setForeground(new java.awt.Color(25, 45, 52));
-        jLabel3.setText("senha");
+        senhaRepetidaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CheckPasswordIcon.png"))); // NOI18N
+        cadastroJPanel.add(senhaRepetidaIcon);
+        senhaRepetidaIcon.setBounds(25, 159, 25, 30);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1)
-                        .addComponent(txtPassw, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                        .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(89, 89, 89)
-                .addComponent(jButton2)
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
+        senhaCadastroIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PasswordIcon.png"))); // NOI18N
+        cadastroJPanel.add(senhaCadastroIcon);
+        senhaCadastroIcon.setBounds(25, 130, 24, 24);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        usuarioCadastroIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/UserIcon.png"))); // NOI18N
+        cadastroJPanel.add(usuarioCadastroIcon);
+        usuarioCadastroIcon.setBounds(25, 60, 30, 30);
+
+        areaSenhaCadastroJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginPanelArea.png"))); // NOI18N
+        cadastroJPanel.add(areaSenhaCadastroJLabel);
+        areaSenhaCadastroJLabel.setBounds(20, 121, 250, 40);
+
+        areaUsuarioCadastroJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginPanelArea.png"))); // NOI18N
+        cadastroJPanel.add(areaUsuarioCadastroJLabel);
+        areaUsuarioCadastroJLabel.setBounds(20, 60, 260, 30);
+
+        areaSenhaRepetidaJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginPanelArea.png"))); // NOI18N
+        cadastroJPanel.add(areaSenhaRepetidaJLabel);
+        areaSenhaRepetidaJLabel.setBounds(20, 149, 260, 50);
+
+        tituloJLabel.setFont(new java.awt.Font("Helvetica Light", 0, 24)); // NOI18N
+        tituloJLabel.setForeground(new java.awt.Color(58, 84, 165));
+        tituloJLabel.setText("Cadastre-se");
+        cadastroJPanel.add(tituloJLabel);
+        tituloJLabel.setBounds(80, 0, 140, 40);
+
+        stripCadastroJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/StripHighlightIcon.png"))); // NOI18N
+        cadastroJPanel.add(stripCadastroJLabel);
+        stripCadastroJLabel.setBounds(0, 34, 300, 20);
+
+        voltarJButton.setFont(new java.awt.Font("Helvetica Light", 0, 20)); // NOI18N
+        voltarJButton.setForeground(new java.awt.Color(58, 84, 165));
+        voltarJButton.setText("Voltar");
+        voltarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarJButtonMouseClicked(evt);
+            }
+        });
+        cadastroJPanel.add(voltarJButton);
+        voltarJButton.setBounds(243, 225, 60, 20);
+
+        cadastrarJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CadastrarIconStatic.png"))); // NOI18N
+        cadastrarJButton.setBorder(null);
+        cadastrarJButton.setBorderPainted(false);
+        cadastrarJButton.setContentAreaFilled(false);
+        cadastrarJButton.setFocusPainted(false);
+        cadastrarJButton.setFocusable(false);
+        cadastrarJButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CadastrarIconPressed.png"))); // NOI18N
+        cadastrarJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastrarJButtonMouseClicked(evt);
+            }
+        });
+        cadastroJPanel.add(cadastrarJButton);
+        cadastrarJButton.setBounds(70, 190, 150, 40);
+
+        cadastroPanelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginBackground.png"))); // NOI18N
+        cadastroJPanel.add(cadastroPanelBackground);
+        cadastroPanelBackground.setBounds(0, 0, 300, 250);
+
+        getContentPane().add(cadastroJPanel);
+        cadastroJPanel.setBounds(0, 0, 300, 250);
+
+        loginJPanel.setLayout(null);
+
+        logoJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Logo.png"))); // NOI18N
+        loginJPanel.add(logoJLabel);
+        logoJLabel.setBounds(100, -4, 100, 80);
+
+        loginJButton.setBackground(new java.awt.Color(204, 51, 255));
+        loginJButton.setFont(new java.awt.Font("Helvetica Light", 0, 14)); // NOI18N
+        loginJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginButtonIconStatic.png"))); // NOI18N
+        loginJButton.setBorder(null);
+        loginJButton.setBorderPainted(false);
+        loginJButton.setContentAreaFilled(false);
+        loginJButton.setFocusPainted(false);
+        loginJButton.setFocusable(false);
+        loginJButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginButtonIconPressed.png"))); // NOI18N
+        loginJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginJButtonMouseClicked(evt);
+            }
+        });
+        loginJPanel.add(loginJButton);
+        loginJButton.setBounds(15, 135, 260, 40);
+
+        sairJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ExitStaticIcon.png"))); // NOI18N
+        sairJButton.setBorder(null);
+        sairJButton.setBorderPainted(false);
+        sairJButton.setContentAreaFilled(false);
+        sairJButton.setFocusPainted(false);
+        sairJButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ExitPressedIcon.png"))); // NOI18N
+        sairJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairJButtonMouseClicked(evt);
+            }
+        });
+        loginJPanel.add(sairJButton);
+        sairJButton.setBounds(273, 10, 20, 11);
+
+        usuarioIconeJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/UserIcon.png"))); // NOI18N
+        loginJPanel.add(usuarioIconeJLabel);
+        usuarioIconeJLabel.setBounds(27, 70, 25, 30);
+
+        senhaIconeJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PasswordIcon.png"))); // NOI18N
+        loginJPanel.add(senhaIconeJLabel);
+        senhaIconeJLabel.setBounds(27, 108, 24, 24);
+
+        usuarioJTextField.setFont(new java.awt.Font("Helvetica Light", 0, 15)); // NOI18N
+        usuarioJTextField.setForeground(new java.awt.Color(153, 153, 153));
+        usuarioJTextField.setText("Usuário");
+        usuarioJTextField.setBorder(null);
+        usuarioJTextField.setCaretColor(new java.awt.Color(153, 153, 153));
+        usuarioJTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuarioJTextFieldMouseClicked(evt);
+            }
+        });
+        loginJPanel.add(usuarioJTextField);
+        usuarioJTextField.setBounds(58, 77, 200, 20);
+
+        cadastreAquiJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CadastreAquiIconStatic.png"))); // NOI18N
+        cadastreAquiJButton.setBorder(null);
+        cadastreAquiJButton.setBorderPainted(false);
+        cadastreAquiJButton.setContentAreaFilled(false);
+        cadastreAquiJButton.setFocusPainted(false);
+        cadastreAquiJButton.setFocusable(false);
+        cadastreAquiJButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CadastreAquiIconPressed.png"))); // NOI18N
+        cadastreAquiJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastreAquiJButtonMouseClicked(evt);
+            }
+        });
+        loginJPanel.add(cadastreAquiJButton);
+        cadastreAquiJButton.setBounds(40, 220, 220, 19);
+
+        stripJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/StripHighlightIcon.png"))); // NOI18N
+        loginJPanel.add(stripJLabel);
+        stripJLabel.setBounds(0, 210, 300, 40);
+
+        senhaJPasswordField.setForeground(new java.awt.Color(153, 153, 153));
+        senhaJPasswordField.setText("Senha");
+        senhaJPasswordField.setBorder(null);
+        senhaJPasswordField.setCaretColor(new java.awt.Color(153, 153, 153));
+        senhaJPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senhaJPasswordFieldMouseClicked(evt);
+            }
+        });
+        loginJPanel.add(senhaJPasswordField);
+        senhaJPasswordField.setBounds(60, 111, 200, 20);
+
+        continuarConectadoJCheckBox.setBorder(null);
+        continuarConectadoJCheckBox.setContentAreaFilled(false);
+        continuarConectadoJCheckBox.setFocusPainted(false);
+        continuarConectadoJCheckBox.setFocusable(false);
+        continuarConectadoJCheckBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ContinuarConectadoStatic.png"))); // NOI18N
+        continuarConectadoJCheckBox.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ContinuarConectadoPressed.png"))); // NOI18N
+        continuarConectadoJCheckBox.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ContinuarConectadoPressed.png"))); // NOI18N
+        loginJPanel.add(continuarConectadoJCheckBox);
+        continuarConectadoJCheckBox.setBounds(20, 178, 250, 19);
+
+        areaSenhaJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginPanelArea.png"))); // NOI18N
+        loginJPanel.add(areaSenhaJLabel);
+        areaSenhaJLabel.setBounds(20, 100, 250, 40);
+
+        areaUsuarioJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginPanelArea.png"))); // NOI18N
+        loginJPanel.add(areaUsuarioJLabel);
+        areaUsuarioJLabel.setBounds(20, 70, 260, 30);
+
+        loginPanelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LoginBackground.png"))); // NOI18N
+        loginJPanel.add(loginPanelBackground);
+        loginPanelBackground.setBounds(0, 0, 300, 250);
+
+        getContentPane().add(loginJPanel);
+        loginJPanel.setBounds(0, 0, 300, 260);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserActionPerformed
 
-    private void txtPasswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswActionPerformed
-
-    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-        // TODO add your handling code here:
-        if (txtUser.getText().equals("Username"))  {
-            txtUser.setText("");
-        }
-    }//GEN-LAST:event_txtUserFocusGained
-
-    private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
-        // TODO add your handling code here:
-        if (txtUser.getText().equals(""))  {
-            txtUser.setText("Username");
-        }
-    }//GEN-LAST:event_txtUserFocusLost
-
-    private void txtPasswFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswFocusGained
-        // TODO add your handling code here:
-        if (txtPassw.getText().equals("Senha"))  {
-            txtPassw.setText("");
-        }
-    }//GEN-LAST:event_txtPasswFocusGained
-
-    private void txtPasswFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswFocusLost
-        // TODO add your handling code here:
-        if (txtPassw.getText().equals(""))  {
-            txtPassw.setText("Senha");
-        }     
-    }//GEN-LAST:event_txtPasswFocusLost
-
-    private void txtPasswTextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_txtPasswTextValueChanged
-        // TODO add your handling code here:
-        txtPassw.setEchoChar('*');
-    }//GEN-LAST:event_txtPasswTextValueChanged
-    
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         Serializador.gravaSistema(sistema);
     }//GEN-LAST:event_formWindowClosing
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        cadastro = new NovoUsuario(sistema);
-        cadastro.setVisible(true);  
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void loginJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginJButtonMouseClicked
+        String username = usuarioJTextField.getText();
+        String password = passwordToString(senhaJPasswordField.getPassword());
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-         String username = txtUser.getText();
-        String passw = txtPassw.getText();
-        
         ArrayList<Usuario> users  = sistema.getUsuarios();
         int id = -1;
         for (Usuario target: users)  {
@@ -214,42 +358,270 @@ public class Login extends javax.swing.JFrame {
                 break;
             }
         }
-        
-        
         if (id != -1) {
-            Usuario usr = users.get(id);
+            Usuario user = users.get(id);
 
-            if (usr.comparaSenha(passw)) {
-                System.out.println(usr);
-                TelaPrincipal tarefa = new TelaPrincipal(sistema, usr);
-                tarefa.setVisible(true);
+            if (user.comparaSenha(password)) {
+                Principal interfacePrincipal = new Principal(sistema, user);
+                //TelaPrincipal tarefa = new TelaPrincipal(sistema, User);
+                //tarefa.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
+                JOptionPane.showMessageDialog(new Frame(), "Combinação incorreta de nome de usuário e senha.");
             }
         } else {
-            JOptionPane.showMessageDialog(new JFrame(), "Combinação inválida de nome de usuário e senha!");
+            JOptionPane.showMessageDialog(new Frame(), "Combinação incorreta de nome de usuário e senha.");
         }
-    }//GEN-LAST:event_jButton1MouseClicked
-    private NovoUsuario getCadastro(){
-        return this.cadastro;
-    }
-    /**
-     * @param args the command line arguments
-     */
-    
+    }//GEN-LAST:event_loginJButtonMouseClicked
 
+    private void senhaJPasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaJPasswordFieldMouseClicked
+        senhaJPasswordField.setText("");      
+    }//GEN-LAST:event_senhaJPasswordFieldMouseClicked
+
+    private void sairJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairJButtonMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_sairJButtonMouseClicked
+
+    private void cadastreAquiJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastreAquiJButtonMouseClicked
+        desliguePainelLogin();
+        liguePainelCadastro();
+    }//GEN-LAST:event_cadastreAquiJButtonMouseClicked
+
+    private void usuarioJTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioJTextFieldMouseClicked
+        usuarioJTextField.setText("");
+    }//GEN-LAST:event_usuarioJTextFieldMouseClicked
+
+    private void cadastrarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarJButtonMouseClicked
+        String nome = usuarioCadastroJTextField.getText();
+        
+        boolean senhasConferem = new String(senhaCadastroJPasswordField.getPassword()).equals(new String(senhaRepetidaJPasswordField.getPassword()));
+        
+        if (sistema.usuarioExiste(nome)) {
+            JOptionPane.showMessageDialog(new Frame(), "Já existe usuário com esse nome!");
+        } else if (!senhasConferem){
+            JOptionPane.showMessageDialog(new Frame(), "Senhas não conferem!");
+        } else {
+            int id;
+            id = sistema.criaUsuario(nome);
+            ArrayList<Usuario> usuarios = sistema.getUsuarios();
+            Usuario user;
+            user = usuarios.get(id);
+            user.setSenha(passwordToString(senhaCadastroJPasswordField.getPassword()));
+            user.setEmail(emailCadastroJTextField.getText());
+            usuarios.set(id, user);
+            JOptionPane.showMessageDialog(new Frame(), "Usuário " + nome + " criado com sucesso!");
+        }
+     
+    }//GEN-LAST:event_cadastrarJButtonMouseClicked
+
+    private void voltarJButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarJButtonMouseClicked
+        desliguePainelCadastro();
+        liguePainelLogin();
+    }//GEN-LAST:event_voltarJButtonMouseClicked
+
+    private void usuarioCadastroJTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioCadastroJTextFieldMouseClicked
+        usuarioCadastroJTextField.setText("");
+    }//GEN-LAST:event_usuarioCadastroJTextFieldMouseClicked
+
+    private void emailCadastroJTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailCadastroJTextFieldMouseClicked
+        emailCadastroJTextField.setText("");
+    }//GEN-LAST:event_emailCadastroJTextFieldMouseClicked
+
+    private void senhaCadastroJPasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaCadastroJPasswordFieldMouseClicked
+        senhaCadastroJPasswordField.setText("");
+    }//GEN-LAST:event_senhaCadastroJPasswordFieldMouseClicked
+
+    private void senhaRepetidaJPasswordFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaRepetidaJPasswordFieldMouseClicked
+        senhaRepetidaJPasswordField.setText("");
+    }//GEN-LAST:event_senhaRepetidaJPasswordFieldMouseClicked
+
+    private String passwordToString(char[] passwordArray)
+    {
+        String retorno = "";
+        for(int i = 0; i < passwordArray.length; i++)
+            retorno += passwordArray[i];
+        return retorno;
+    }
+    
+    private void desliguePainelLogin() 
+    {
+    areaSenhaJLabel.setVisible(false);
+    areaUsuarioJLabel.setVisible(false);
+    cadastreAquiJButton.setVisible(false);
+    continuarConectadoJCheckBox.setVisible(false);
+    loginJButton.setVisible(false);
+    logoJLabel.setVisible(false);
+    sairJButton.setVisible(false);
+    senhaIconeJLabel.setVisible(false);
+    senhaJPasswordField.setVisible(false);
+    usuarioIconeJLabel.setVisible(false);
+    usuarioJTextField.setVisible(false);
+    stripJLabel.setVisible(false);
+    
+    areaSenhaJLabel.setEnabled(false);
+    areaUsuarioJLabel.setEnabled(false);
+    cadastreAquiJButton.setEnabled(false);
+    continuarConectadoJCheckBox.setEnabled(false);
+    loginJButton.setEnabled(false);
+    logoJLabel.setEnabled(false);
+    sairJButton.setEnabled(false);
+    senhaIconeJLabel.setEnabled(false);
+    senhaJPasswordField.setEnabled(false);
+    usuarioIconeJLabel.setEnabled(false);
+    usuarioJTextField.setEnabled(false);
+    stripJLabel.setEnabled(false);
+    }
+    
+    private void liguePainelLogin() 
+    {
+    areaSenhaJLabel.setVisible(true);
+    areaUsuarioJLabel.setVisible(true);
+    cadastreAquiJButton.setVisible(true);
+    continuarConectadoJCheckBox.setVisible(true);
+    loginJButton.setVisible(true);
+    logoJLabel.setVisible(true);
+    sairJButton.setVisible(true);
+    senhaIconeJLabel.setVisible(true);
+    senhaJPasswordField.setVisible(true);
+    usuarioIconeJLabel.setVisible(true);
+    usuarioJTextField.setVisible(true);
+    stripJLabel.setVisible(true);
+    
+    areaSenhaJLabel.setEnabled(true);
+    areaUsuarioJLabel.setEnabled(true);
+    cadastreAquiJButton.setEnabled(true);
+    continuarConectadoJCheckBox.setEnabled(true);
+    loginJButton.setEnabled(true);
+    logoJLabel.setEnabled(true);
+    sairJButton.setEnabled(true);
+    senhaIconeJLabel.setEnabled(true);
+    senhaJPasswordField.setEnabled(true);
+    usuarioIconeJLabel.setEnabled(true);
+    usuarioJTextField.setEnabled(true);
+    stripJLabel.setEnabled(true);
+    }
+    
+    private void liguePainelCadastro() 
+    {       
+    areaSenhaCadastroJLabel.setVisible(true);
+    areaSenhaRepetidaJLabel.setVisible(true);
+    areaUsuarioCadastroJLabel.setVisible(true);
+    cadastrarJButton.setVisible(true);
+    cadastroJPanel.setVisible(true);
+    cadastroPanelBackground.setVisible(true);
+    cadastroUserIcon.setVisible(true);
+    emailCadastroJTextField.setVisible(true);
+    informacaoJLabel.setVisible(true);
+    areaEmailCadastroJLabel.setVisible(true);
+    senhaCadastroIcon.setVisible(true);
+    senhaCadastroJPasswordField.setVisible(true);
+    senhaRepetidaIcon.setVisible(true);
+    senhaRepetidaJPasswordField.setVisible(true);
+    stripCadastroJLabel.setVisible(true);
+    tituloJLabel.setVisible(true);
+    usuarioCadastroIcon.setVisible(true);
+    usuarioCadastroJTextField.setVisible(true);
+    voltarJButton.setVisible(true);
+    
+    areaSenhaCadastroJLabel.setEnabled(true);
+    areaSenhaRepetidaJLabel.setEnabled(true);
+    areaUsuarioCadastroJLabel.setEnabled(true);
+    cadastrarJButton.setEnabled(true);
+    cadastroJPanel.setEnabled(true);
+    cadastroPanelBackground.setEnabled(true);
+    cadastroUserIcon.setEnabled(true);
+    emailCadastroJTextField.setEnabled(true);
+    informacaoJLabel.setEnabled(true);
+    areaEmailCadastroJLabel.setEnabled(true);
+    senhaCadastroIcon.setEnabled(true);
+    senhaCadastroJPasswordField.setEnabled(true);
+    senhaRepetidaIcon.setEnabled(true);
+    senhaRepetidaJPasswordField.setEnabled(true);
+    stripCadastroJLabel.setEnabled(true);
+    tituloJLabel.setEnabled(true);
+    usuarioCadastroIcon.setEnabled(true);
+    usuarioCadastroJTextField.setEnabled(true);
+    voltarJButton.setEnabled(true);
+    }
+    
+    private void desliguePainelCadastro() 
+    {       
+    areaSenhaCadastroJLabel.setVisible(false);
+    areaSenhaRepetidaJLabel.setVisible(false);
+    areaUsuarioCadastroJLabel.setVisible(false);
+    cadastrarJButton.setVisible(false);
+    cadastroJPanel.setVisible(false);
+    cadastroPanelBackground.setVisible(false);
+    cadastroUserIcon.setVisible(false);
+    emailCadastroJTextField.setVisible(false);
+    informacaoJLabel.setVisible(false);
+    areaEmailCadastroJLabel.setVisible(false);
+    senhaCadastroIcon.setVisible(false);
+    senhaCadastroJPasswordField.setVisible(false);
+    senhaRepetidaIcon.setVisible(false);
+    senhaRepetidaJPasswordField.setVisible(false);
+    stripCadastroJLabel.setVisible(false);
+    tituloJLabel.setVisible(false);
+    usuarioCadastroIcon.setVisible(false);
+    usuarioCadastroJTextField.setVisible(false);
+    voltarJButton.setVisible(false);
+    
+    areaSenhaCadastroJLabel.setEnabled(false);
+    areaSenhaRepetidaJLabel.setEnabled(false);
+    areaUsuarioCadastroJLabel.setEnabled(false);
+    cadastrarJButton.setEnabled(false);
+    cadastroJPanel.setEnabled(false);
+    cadastroPanelBackground.setEnabled(false);
+    cadastroUserIcon.setEnabled(false);
+    emailCadastroJTextField.setEnabled(false);
+    informacaoJLabel.setEnabled(false);
+    areaEmailCadastroJLabel.setEnabled(false);
+    senhaCadastroIcon.setEnabled(false);
+    senhaCadastroJPasswordField.setEnabled(false);
+    senhaRepetidaIcon.setEnabled(false);
+    senhaRepetidaJPasswordField.setEnabled(false);
+    stripCadastroJLabel.setEnabled(false);
+    tituloJLabel.setEnabled(false);
+    usuarioCadastroIcon.setEnabled(false);
+    usuarioCadastroJTextField.setEnabled(false);
+    voltarJButton.setEnabled(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel areaEmailCadastroJLabel;
+    private javax.swing.JLabel areaSenhaCadastroJLabel;
+    private javax.swing.JLabel areaSenhaJLabel;
+    private javax.swing.JLabel areaSenhaRepetidaJLabel;
+    private javax.swing.JLabel areaUsuarioCadastroJLabel;
+    private javax.swing.JLabel areaUsuarioJLabel;
+    private javax.swing.JButton cadastrarJButton;
+    private javax.swing.JButton cadastreAquiJButton;
+    private javax.swing.JPanel cadastroJPanel;
+    private javax.swing.JLabel cadastroPanelBackground;
+    private javax.swing.JLabel cadastroUserIcon;
+    private javax.swing.JCheckBox continuarConectadoJCheckBox;
+    private javax.swing.JTextField emailCadastroJTextField;
+    private javax.swing.JLabel informacaoJLabel;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtPassw;
-    private javax.swing.JTextField txtUser;
+    private javax.swing.JButton loginJButton;
+    private javax.swing.JPanel loginJPanel;
+    private javax.swing.JLabel loginPanelBackground;
+    private javax.swing.JLabel logoJLabel;
+    private javax.swing.JButton sairJButton;
+    private javax.swing.JLabel senhaCadastroIcon;
+    private javax.swing.JPasswordField senhaCadastroJPasswordField;
+    private javax.swing.JLabel senhaIconeJLabel;
+    private javax.swing.JPasswordField senhaJPasswordField;
+    private javax.swing.JLabel senhaRepetidaIcon;
+    private javax.swing.JPasswordField senhaRepetidaJPasswordField;
+    private javax.swing.JLabel stripCadastroJLabel;
+    private javax.swing.JLabel stripJLabel;
+    private javax.swing.JLabel tituloJLabel;
+    private javax.swing.JLabel usuarioCadastroIcon;
+    private javax.swing.JTextField usuarioCadastroJTextField;
+    private javax.swing.JLabel usuarioIconeJLabel;
+    private javax.swing.JTextField usuarioJTextField;
+    private javax.swing.JLabel voltarJButton;
     // End of variables declaration//GEN-END:variables
 }
 /*

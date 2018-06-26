@@ -8,12 +8,8 @@ package Interfaces;
 import Classes_UML.Inicio;
 import Classes_UML.Serializador;
 import Classes_UML.Sistema;
-import Classes_UML.Canal;
 import Classes_UML.Usuario;
-import Classes_UML.Mensagem;
 import java.util.ArrayList;
-import java.util.Vector;
-import javax.swing.DefaultListModel;
 
 /**
  *
@@ -21,19 +17,16 @@ import javax.swing.DefaultListModel;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    //private Usuario usuario = Inicio.usuario;
+    private Usuario usuario = Inicio.usuario;
     private ArrayList<java.awt.Label> labels;
     private ArrayList<java.awt.Button> buttons;
     private ArrayList<javax.swing.JProgressBar> bars;
     private Sistema sistema;
-    private Usuario usuario;
+    private Usuario user;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal(Sistema sistema, Usuario user) {
-        this.sistema = sistema;        
-        this.usuario = user;
-
         initComponents();
         labels = new ArrayList<>();
         labels.add(lblTarefa1);
@@ -49,7 +42,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         bars.add(barTarefa1);
         bars.add(barTarefa2);
         bars.add(barTarefa3);
-        bars.add(barTarefa4);        
+        bars.add(barTarefa4);
+        this.sistema = sistema;
+        
+        this.user = user;
+        
+        
     }
 
     /**
@@ -78,14 +76,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnNovaTarefa = new java.awt.Button();
         panel1 = new java.awt.Panel();
         lblParceiros = new java.awt.Label();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        chatUsers = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         chatBoard = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         chatMSG = new javax.swing.JTextArea();
         btnEnviar = new java.awt.Button();
         btnAddUserCanal = new java.awt.Button();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        chatUsers = new javax.swing.JList<>();
         btnLogOut = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -242,6 +240,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblParceiros.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblParceiros.setText("Parceiros da Equipe");
 
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        chatUsers.setEditable(false);
+        chatUsers.setColumns(20);
+        chatUsers.setRows(5);
+        jScrollPane1.setViewportView(chatUsers);
+
         jScrollPane2.setHorizontalScrollBar(null);
 
         chatBoard.setEditable(false);
@@ -279,9 +284,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        chatUsers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane4.setViewportView(chatUsers);
-
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -289,19 +291,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                            .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddUserCanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(115, 115, 115)
-                                .addComponent(btnAddUserCanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
@@ -312,12 +312,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblParceiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddUserCanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnEnviar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -357,7 +358,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         pack();
@@ -365,7 +366,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa1MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(0, sistema, this.usuario);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(0,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa1MouseClicked
 
@@ -375,19 +376,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnTarefa2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa2MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(1, sistema, this.usuario);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(1,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa2MouseClicked
 
     private void btnTarefa3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa3MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(2, sistema, this.usuario);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(2,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa3MouseClicked
 
     private void btnTarefa4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarefa4MouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3, sistema, this.usuario);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(3,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnTarefa4MouseClicked
 
@@ -408,39 +409,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 labels.get(i).setText(usuario.getTarefas().get(i).getNome());
                 labels.get(i).setVisible(true);
                 bars.get(i).setVisible(true);
-                bars.get(i).setValue(usuario.getTarefas().get(i).getProgresso());
                 buttons.get(i).setVisible(true);
             }
         }
-        
-        // Canal
-        ArrayList<Canal> canais = usuario.getCanais();
-        if (canais.size() > 0) {
-            Canal canal = canais.get(0);
-            ArrayList<Usuario> users = canal.getUsuarios();
-            DefaultListModel listModel = new DefaultListModel();
-                      
-            for (Usuario usr : users) {
-                listModel.addElement(usr.getNome());
-            }
-            chatUsers.setModel(listModel);
-            
-            AtualizaMSGBoard(canal);
-        } else {
-            chatBoard.setText("");
-            chatMSG.setText("");
-            chatUsers.setListData(new Vector());
+        ArrayList<Usuario> users = sistema.getUsuarios();
+        for(Usuario amigos: users) {
+            chatUsers.setText(chatUsers.getText() + amigos.getNome() +"\n");
         }
     }//GEN-LAST:event_formWindowActivated
 
-    private void AtualizaMSGBoard(Canal canal) {
-        String theMsg = canal.printarMensagens();
-            
-        chatBoard.setText(theMsg);
-    }
     private void btnNovaTarefaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovaTarefaMouseClicked
         // TODO add your handling code here:
-        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1, sistema, this.usuario);
+        NovaTarefaGUI tarefaGUI = new NovaTarefaGUI(-1,sistema);
         tarefaGUI.setVisible(true);
     }//GEN-LAST:event_btnNovaTarefaMouseClicked
 
@@ -456,17 +436,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
-        ArrayList<Canal> canais = usuario.getCanais();
-        if (canais.size() > 0) {
-            Canal canal = canais.get(0);
-        
-            String texto = chatMSG.getText();
-            Mensagem mensagem = new Mensagem(usuario, texto);
-        
-            if (!texto.isEmpty()) {
-                canal.enviaMensagem(mensagem);
-                AtualizaMSGBoard(canal);
-            }
+        String texto = chatMSG.getText();
+        if (!texto.isEmpty()) {
+            chatBoard.setText(chatBoard.getText()+user.getNome()+":\n  "+chatMSG.getText()+"\n");
             chatMSG.setText("");
         }
     }//GEN-LAST:event_btnEnviarMouseClicked
@@ -476,15 +448,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnAddUserCanalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddUserCanalMouseClicked
-        ArrayList<Canal> canais = usuario.getCanais();
-        if (canais.size() > 0) {
-            int id = canais.get(0).getId();
-            NovoCanalGUI guiC = new NovoCanalGUI(id, usuario, sistema);
-            guiC.setVisible(true);
-        } else {
-            NovoCanalGUI guiC = new NovoCanalGUI(-1, usuario, sistema);
-            guiC.setVisible(true);
-        }
+        NovoCanalGUI guiC = new NovoCanalGUI(user, sistema);
+        guiC.setVisible(true);
     }//GEN-LAST:event_btnAddUserCanalMouseClicked
 
     private void btnAddUserCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserCanalActionPerformed
@@ -512,10 +477,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private java.awt.Button btnTarefa4;
     private javax.swing.JTextArea chatBoard;
     private javax.swing.JTextArea chatMSG;
-    private javax.swing.JList<String> chatUsers;
+    private javax.swing.JTextArea chatUsers;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private java.awt.Label lblParceiros;
     private javax.swing.JLabel lblProgressoTarefa1;
     private java.awt.Label lblTarefa1;

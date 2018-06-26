@@ -26,6 +26,11 @@ public class Sistema implements Serializable{
 	public Sistema(){
 		usuarios = new ArrayList<>();
 		projetos = new ArrayList<>();
+                proxIdUsuario = 0;
+                proxIdProjeto = 0;
+                proxIdTarefa = 0;
+                proxIdCanal = 0;
+                this.gravaProximoId();
 	}
 	
 	// métodos que criam usuários/gerentes no sistema

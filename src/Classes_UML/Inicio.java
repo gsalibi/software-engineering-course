@@ -19,38 +19,43 @@ public class Inicio {
        public static void iniciaSimulacao(Sistema sistema){
                         
             //Dados inseridos à força so para simulaçao
-            int id = sistema.criaUsuario("UsuarioTeste");
+            int id;
+            
+            id = sistema.criaUsuario("Gandalf");
             usuario = sistema.getUsuarios().get(id);
             usuario.setSenha("123");
             
-            int projID = sistema.criaProjeto("Campeonato Internacional de Amarelinha Subaquática");
-            
-            Tarefa tarefa = new Tarefa("Contatar Guarda Costeira", "Verificar com a guarda costeira",  Date.valueOf("2018-09-26"));
-            
+            sistema.criaProjeto("ProjetoTeste");
+            Tarefa tarefa = new Tarefa("Banco de dados", "Descrição da tarefa 01", Date.valueOf("2018-09-26"));
+            tarefa.setProgresso(57);
             usuario.adicionaNovaTarefa(tarefa);
-            Tarefa tarefa2 = new Tarefa("Fechar contrato com fábrica de giz", "Verificar melhores preços", Date.valueOf("2018-09-27"));
+            Tarefa tarefa2 = new Tarefa("Implementações de requisitos", "Descrição da tarefa 02", Date.valueOf("2018-09-27"));
+            tarefa2.setProgresso(39);
             usuario.adicionaNovaTarefa(tarefa2);
             
-            sistema.criaProjeto("Website do Curupira");
-            Tarefa tarefa3 = new Tarefa("Nome de domínio", "Reservar nome de domínio curupira.com.br", Date.valueOf("2018-09-10"));
             
-            
-            id = sistema.criaUsuario("Colega da Silva");
-            usuario = sistema.getUsuarios().get(id);
-            usuario.adicionaNovaTarefa(tarefa2);
-            
-            id = sistema.criaUsuario("Username");
-            usuario = sistema.getUsuarios().get(id);
-            usuario.setSenha("Senha");
-            
-            id = sistema.criaUsuario("DonoCanal");
+            id = sistema.criaUsuario("Legolas");
             usuario = sistema.getUsuarios().get(id);
             usuario.setSenha("123");
             
-            Canal canal = new Canal("Zicas", usuario, "Canal dos zikas");
-            usuario.adicionaNoCanal(canal);
+            id = sistema.criaUsuario("Aragorn");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
             
+            id = sistema.criaUsuario("Bilbo");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
             
+            id = sistema.criaUsuario("Thorin");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
             
+            id = sistema.criaUsuario("Frodo");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
+            
+            id = sistema.criaUsuario("Sam");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
        }
 }

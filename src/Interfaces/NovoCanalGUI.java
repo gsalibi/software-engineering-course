@@ -8,8 +8,6 @@ import Classes_UML.Tarefa;
 import Classes_UML.Usuario;
 import java.sql.Date;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  * tentativa de fazer uma janela de criação de tarefas
@@ -25,45 +23,22 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     private ArrayList<Usuario> atribuidos;
     private Sistema sistema;
     private Usuario dono;
-    private Usuario user;
     /**
      * Creates new form NewJFrame
      */
-    public NovoCanalGUI(int index_canal, Usuario user, Sistema sistema) {
+    public NovoCanalGUI(Usuario user, Sistema sistema) {
         initComponents();
+        novo_canal = true;
+        atribuidos = new ArrayList<>();
         
-        this.user = user;
+        this.setTitle("Criar Novo Canal");     
         
-        if(index_canal >= 0) {
-            novo_canal = false;
-            for(Canal ch: user.getCanais()){
-                if(ch.getId() == index_canal){
-                    canal = ch;
-                    break;
-                }
-            }
-            
-        }
-        else{
-            novo_canal = true;
-            canal = new Canal("Novo Canal", user, "Insira a descrição do canal aqui");
-            this.setTitle("Criar Novo Canal");
-            
-        }
-        txtCanalNome.setText(canal.getNome());
-        descricaoText.setText(canal.getDesc());
-        
-        
-        atribuidos = canal.getUsuarios();
-        for (Usuario usr:atribuidos){
-            responsaveisText.add(usr.getNome());
-        }
-        
-        for (Usuario usr:sistema.getUsuarios()){
-            usuariosText.add(usr.getNome());
+        for (int i = 0; i < sistema.getUsuarios().size(); i++){
+            usuariosText.add(sistema.getUsuarios().get(i).getNome());
         }
        
         this.sistema = sistema;
+        this.dono = user;
     }
 
     /**
@@ -77,7 +52,6 @@ public class NovoCanalGUI extends javax.swing.JFrame {
 
         button2 = new java.awt.Button();
         txtCanalNome = new java.awt.TextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         label2 = new java.awt.Label();
         jLabel3 = new javax.swing.JLabel();
@@ -90,7 +64,6 @@ public class NovoCanalGUI extends javax.swing.JFrame {
         btnDelResponsaveis = new java.awt.Button();
         usuariosText = new java.awt.List();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         button2.setLabel("button2");
 
@@ -123,11 +96,8 @@ public class NovoCanalGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel6.setText("Projeto:");
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Nova Canal:");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Participantes");
@@ -188,8 +158,7 @@ public class NovoCanalGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6))
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -198,6 +167,9 @@ public class NovoCanalGUI extends javax.swing.JFrame {
                             .addComponent(descricaoText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtCanalNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -210,12 +182,7 @@ public class NovoCanalGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAddResponsaveis, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(usuariosText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCanalNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(77, 77, 77)))
+                            .addComponent(usuariosText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,11 +192,7 @@ public class NovoCanalGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtCanalNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +207,7 @@ public class NovoCanalGUI extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddResponsaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(descartar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -272,40 +235,7 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_descartarActionPerformed
 
     private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
-           
-        if (canal.getIdProprietario() == user.getId() || canal.getModeradores().contains(user.getId())) {
-            String nome = txtCanalNome.getText();
-            String desc = descricaoText.getText();
-            canal.setNome(nome);
-            canal.setDesc(desc);
-
-            for (Usuario usr: canal.getUsuarios()) {
-                usr.removeDoCanal(canal);
-                canal.removeUsuario(usr);
-            }
-            int doom = -1;
-            for (Usuario usr: atribuidos) {
-                if (usr.getId() == canal.getIdProprietario()){
-                    doom = 1;
-                    break;
-                }
-            }
-            if(doom == 1) {
-                for (Usuario usr: atribuidos) {
-                    canal.adicionaUsuario(usr);
-                    usr.adicionaNoCanal(canal);
-                }
-            } else {
-                for (Usuario usr: canal.getUsuarios()) {
-                    usr.removeDoCanal(canal);
-                    canal.removeUsuario(usr);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(new JFrame(), "You have no power here!");
-        }
-
-        this.dispose();
+        // TODO add your handling code here:
         
     }//GEN-LAST:event_finalizarMouseClicked
 
@@ -366,12 +296,10 @@ public class NovoCanalGUI extends javax.swing.JFrame {
     private java.awt.Button descartar;
     private java.awt.TextArea descricaoText;
     private java.awt.Button finalizar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private java.awt.Label label2;
     private java.awt.List responsaveisText;
     private java.awt.TextField txtCanalNome;
