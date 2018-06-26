@@ -16,6 +16,7 @@ public class Mensagem implements Serializable {
 	private static int proximoId = 0;
 	private final int id;
 	private final int id_usuario;
+        private final Usuario user;
 	private final Date timestamp;
 	private String conteudo;
 
@@ -25,13 +26,27 @@ public class Mensagem implements Serializable {
          * @param id_usuario Um atributo id da classe Usuario
          * @param conteudo O texto contido na mensagem. Este é codificado em UTF-8.
          */
+        @Deprecated
 	public Mensagem(int id_usuario, String conteudo){
 		this.id = proximoId++;
 		this.id_usuario = id_usuario;
 		this.timestamp = new Date();
 		this.conteudo = conteudo;
+                this.user=null;
 	}
+        
+        public Mensagem(Usuario user, String conteudo) {
+            this.id = proximoId++;
+            this.id_usuario = user.getId();
+            this.user = user;
+            this.timestamp = new Date();
+            this.conteudo = conteudo;
+        }
 	
+        public Usuario getUser() {
+            return this.user;
+        }
+        
 	public int getId() {
 		return id;
 	}

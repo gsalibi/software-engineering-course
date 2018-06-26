@@ -129,8 +129,10 @@ public class Usuario implements Serializable {
 	
 
 	public void adicionaNoCanal(Canal can){
-		if (!canais.contains(can))
+		if (!canais.contains(can)) {
+                        can.adicionaUsuario(this);
 			canais.add(can);
+                }
 	}
 	
 	public void adicionaNovaTarefa(Tarefa tar){

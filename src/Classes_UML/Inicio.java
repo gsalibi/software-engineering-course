@@ -43,5 +43,14 @@ public class Inicio {
             usuario = sistema.getUsuarios().get(id);
             usuario.setSenha("Senha");
             
+            id = sistema.criaUsuario("DonoCanal");
+            usuario = sistema.getUsuarios().get(id);
+            usuario.setSenha("123");
+            
+            Canal canal = new Canal("Zicas", usuario, "Canal dos zikas");
+            usuario.adicionaNoCanal(canal);
+            
+            
+            
        }
 }

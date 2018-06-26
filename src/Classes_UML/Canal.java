@@ -2,6 +2,7 @@ package Classes_UML;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Canal
@@ -46,14 +47,10 @@ public class Canal implements Serializable {
 		idModeradores.add(proprietario.getId());
 		mensagens = new ArrayList<Mensagem>();
 		usuarios = new ArrayList<Usuario>();
-		usuarios.add(proprietario);
+		
         this.descricao = desc;
 	}
 
-    Canal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-	
 	public int getId(){
 		return id;
 	}
@@ -81,7 +78,7 @@ public class Canal implements Serializable {
 	public void adicionaUsuario(Usuario novo){
 		if (!usuarios.contains(novo)){
 			usuarios.add(novo);
-			novo.adicionaNoCanal(this);
+			
 		}
 	}
 	
@@ -154,7 +151,7 @@ public class Canal implements Serializable {
 	public void deletaMensagem(Mensagem msg){
 		mensagens.remove(msg);
 	}
-	
+        
         /**
          * Solicita ao Canal uma lista das mensagens enviadas e não removidas
          * @return Um ArrayList de instâncias Mensagem existentes no canal no momento da execução.
@@ -162,6 +159,24 @@ public class Canal implements Serializable {
 	public ArrayList<Mensagem> getMensagens(){
 		return new ArrayList<>(mensagens);
 	}
+        
+        public String printarMensagens() {
+            ArrayList<Mensagem> mens = getMensagens();
+            mens.sort(new Comparator<Mensagem>() {
+                public int compare(Mensagem msg1, Mensagem msg2) {
+                    return msg1.getTimestamp().compareTo(msg2.getTimestamp());
+                }
+            });
+            
+            String theMessage = "";
+            for (Mensagem msg: mens) {
+                Usuario participante = msg.getUser();
+                theMessage = theMessage + participante.getNome()+"("+participante.getId()+"):\n  "+msg.getConteudo()+"\n";
+            }
+            theMessage = theMessage + "\n";
+            
+            return theMessage;
+        }
         
         // Isso aqui é necessário para controle de duplicatas.
         @Override
